@@ -1,3 +1,7 @@
 ﻿  Source.cpp
-  LAB1_Voronina.vcxproj -> C:\Users\Полина\Desktop\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.exe
-  LAB1_Voronina.vcxproj -> C:\Users\Полина\Desktop\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.pdb (Partial PDB)
+d:\bozhko\bozhko\bozhko\lab1_voronina\source.cpp(24): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\source.cpp(48): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\source.cpp(90): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\source.cpp(105): warning C4018: <: несоответствие типов со знаком и без знака
+  LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.exe
+  LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.pdb (Partial PDB)

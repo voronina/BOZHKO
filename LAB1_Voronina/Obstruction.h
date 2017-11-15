@@ -21,13 +21,13 @@ public:
 	void print_points();
 	void print_lines();
 
-	/*void obs_inersect()
-	{	POINT inter_point(0, 0);
-	bool ans = L[0].intersect(L[1], L[3], inter_point);
-	ans = ans * L[0].belong(inter_point);
-	ans = ans * L[3].belong(inter_point);
-	cout << ans << endl; };
-
+	void obs_inersect(LINE L1, LINE L2)
+	{	
+		POINT inter_point(0, 0);
+		bool ans = L1.intersect(L1, L2, inter_point);
+		cout << "TEST = " << ans << endl;
+	};
+/*
 	void obs_belong()
 	{	POINT inter_point(1, 2);
 	cout << L[0].belong(inter_point); };

@@ -1,6 +1,7 @@
 class VERTEX {
 public:
 	int NUM;
+	int O_NUM;
 	POINT POINT_GR;
 	vector<int> parent;
 	vector<int> children;

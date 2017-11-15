@@ -1,14 +1,15 @@
 #include "Header.h"
 
 // Чтение параметров препятствий
-OBS* OBS_read()
+vector<OBS> OBS_read()
 {
 	// Адрес расположения исходных данных
 	string str1 = ".\\INPUTS\\OBS_"; 		
 	string str3 = ".txt";
 	string str2, str4;
 
-	OBS* O = (OBS*)malloc(OBS_AMO*(sizeof(OBS))); // Массив препятствий
+	//OBS* O = (OBS*)malloc(OBS_AMO*(sizeof(OBS))); // Массив препятствий
+	vector<OBS> O;
 
 	vector<double> init_mas;
 	POINT* points;
@@ -25,7 +26,8 @@ OBS* OBS_read()
 		points = vector_to_POINTS(init_mas, N);
 
 		OBS O_curr(points, N/2);
-		O[k-1] = O_curr;
+		//O[k-1] = O_curr;
+		O.push_back(O_curr);
 
 		cout << "Obstruction " << k << endl;
 		O_curr.print_points();
