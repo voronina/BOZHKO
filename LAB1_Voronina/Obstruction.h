@@ -11,6 +11,10 @@ public:
 		create_border(L);
 	};
 
+	int g_N() { return N; };
+	POINT* g_P() { return P; };
+	LINE* g_L() { return L; };
+
 	void create_border(LINE*);
 	bool inside_border(POINT P);
 

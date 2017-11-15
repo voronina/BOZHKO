@@ -15,3 +15,13 @@ using namespace std;
 #include "Pont_Line.h"
 #include "Obstruction.h" 
 #include "Graph.h"
+
+#define OBS_AMO 2
+
+// Функции преобразования к вектору точек и чтения данных
+vector<double> read_data(string str);
+POINT* vector_to_POINTS(vector<double> mas, int N);
+OBS border_read();
+OBS* OBS_read();
+
+vector<LINE> new_lines(vector<LINE> new_lines, OBS O, POINT P);
