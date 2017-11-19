@@ -1,43 +1,120 @@
 #include "Header.h"
 
+
+// Создание графа
+void GRAPH_CREATOR::graph_creator(int P_AMO)
+{
+	print_open_close();
+
+	int CUR_NUM = OPEN[0];
+	int CURR_O_NUM;
+	POINT CUR_P = LIST[CUR_NUM].POINT_GR;
+
+	for (int i = 0; i < P_AMO - 1; i++)
+	{
+		CUR_NUM = OPEN[0];   
+		CUR_P = LIST[CUR_NUM].POINT_GR;
+		CURR_O_NUM = LIST[CUR_NUM].O_NUM;
+
+		for (int j = 0; j < O.size(); j++)
+		{
+			if (j != CURR_O_NUM)  curr_line_vec = create_lines(j, CUR_NUM, CUR_P);
+		}
+
+		curr_line_vec = create_line_to_term(CUR_P, CUR_NUM, TERM);
+
+		if (curr_line_vec.begin() != curr_line_vec.end()) new_lines.insert(new_lines.end(), curr_line_vec.begin(), curr_line_vec.end());
+
+		curr_line_vec.clear();
+
+		CLOSE.push_back(OPEN[0]);
+		OPEN.erase(OPEN.begin());
+
+		print_open_close();
+	}
+
+	for (int i = 0; i < LIST.size(); i++)
+	{
+		LIST[i].print_vertex();
+	}
+}
+
+
+
+
+
+
+
+
+
 // Проведение новой линии
-vector<LINE> GRAPH::create_lines(vector<LINE> curr_line_vec, vector<LINE> new_lines, vector<OBS> O, int j, POINT P)
+vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 {
 	POINT* P_curr = O[j].g_P();
 	for (int i = 0; i < O[j].g_N(); i++)
 	{
 		LINE curr_line = curr_line.create_line(P, P_curr[i]);
-		if (check_new_line(new_lines, O, curr_line))
+		if (check_new_line(curr_line))
 		{
 			curr_line_vec.push_back(curr_line);
-			VERTEX NEW_V(NUM_VER, j, P_curr[i]);
-			OPEN.push_back(NEW_V);
-			LIST.push_back(NEW_V);
-			NUM_VER++;
+			create_new_bound(P, P_curr[i], j, CUR_NUM);
 		}
 	}
 	return curr_line_vec;
 }
 
 // Соединение с терминальной вершиной
-vector<LINE> GRAPH::create_line_to_term(vector<LINE> curr_line_vec, vector<LINE> new_lines, vector<OBS> O, POINT CUR_P, POINT TERM)
+vector<LINE> GRAPH_CREATOR::create_line_to_term(POINT CUR_P, int CUR_NUM, POINT TERM)
 {
 	// Проверка для терминальной вершины
 	LINE curr_line = curr_line.create_line(CUR_P, TERM);
-	if (check_new_line(new_lines, O, curr_line))
+	if (check_new_line(curr_line) && !already_exist(TERM))
 	{ 
 		curr_line_vec.push_back(curr_line);
-		VERTEX NEW_V(NUM_VER, -2, TERM);
-		OPEN.push_back(NEW_V);
-		LIST.push_back(NEW_V);
-		NUM_VER++;
+		create_new_bound(CUR_P, TERM, -2, CUR_NUM);
 	}
-
 	return curr_line_vec;
 }
 
+
+
+
+
+
+// Создание новой связи
+void GRAPH_CREATOR::create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM)
+{
+	int num = already_exist(P2);
+	if ( num == -1 )
+	{
+		VERTEX NEW_V(NUM_VER, j, P2);
+		NEW_V.add_neigh(CUR_NUM);
+		LIST[CUR_NUM].add_neigh(NUM_VER);
+		LIST.push_back(NEW_V);
+		OPEN.push_back(NUM_VER);
+		NUM_VER++;
+	}
+	else
+	{
+		LIST[num].add_neigh(CUR_NUM);
+		LIST[CUR_NUM].add_neigh(NUM_VER);
+	}
+}
+
+// Проверка на существование вершины
+int GRAPH_CREATOR::already_exist(POINT P)
+{
+	for (int i = 0; i < LIST.size(); i++) if ((LIST[i].POINT_GR).equivalent(P)) return LIST[i].NUM;
+	return -1;
+}
+
+
+
+
+
+
 // Проверка на пересечение с существующими линиями
-bool GRAPH::check_new_line(vector<LINE> new_lines, vector<OBS> O, LINE L_curr)
+bool GRAPH_CREATOR::check_new_line(LINE L_curr)
 {
 	POINT inter(0, 0);
 
@@ -71,39 +148,13 @@ bool GRAPH::check_new_line(vector<LINE> new_lines, vector<OBS> O, LINE L_curr)
 	return true;
 }
 
-// Создание графа
-void GRAPH::graph_creator(vector<OBS> O)
+
+// Печать данных о вершине
+void VERTEX::print_vertex()
 {
-	POINT CUR_P = CLOSE[0].POINT_GR;
-	vector<LINE> CUR_L, NEW_L;
-
-	int NUM_VER = 1;
-	for (int i = 0; i < 2; i++)
-	{
-		CUR_P = CLOSE[0].POINT_GR;
-		if (i == 1)
-		{
-			POINT TEST(3.5, 6);
-			CUR_P = TEST;
-		}
-
-		int O_NUM = -1;
-		for (int j = 0; j < O.size(); j++)
-		{
-			if (j != O_NUM)  CUR_L = create_lines(CUR_L, NEW_L, O, j, CUR_P);
-		}
-
-		CUR_L = create_line_to_term(CUR_L, NEW_L, O, CUR_P, TERM);
-
-		if (CUR_L.begin() != CUR_L.end()) NEW_L.insert(NEW_L.end(), CUR_L.begin(), CUR_L.end());
-
-		CUR_L.clear();
-		cout << endl << "NEW_L.size() = " << NEW_L.size() << endl;
-	}
-
-	/*for (int i = 0; i < OPEN.size(); i++)
-	{
-	cout << " i = " << i << endl;
-	OPEN[i].POINT_GR.print_point();
-	}*/
+	cout << endl << " NUM = " << NUM << " O_NUM = " << O_NUM << endl;
+	POINT_GR.print_point();
+	cout << " NEI = ";
+	for (int i = 0; i < neigh.size(); i++) cout << neigh[i] << "; ";
+	cout << endl << endl;
 }

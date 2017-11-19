@@ -15,14 +15,19 @@ int main()
 
 	O.push_back(B);
 
+	int P_AMO = 2;
+	for (int i = 0; i < O.size(); i++) P_AMO += O[i].g_N();
+
+	cout << " A = " << P_AMO << endl;
+
 	//int counter = 0;
 	//for (int i = 0; i < O.size(); i++)
 		
 	//vector<VERTEX> OPEN;
 
-	GRAPH GR(ST, TERM);
+	GRAPH_CREATOR GR_CREATOR(ST, TERM, O);
 
-	GR.graph_creator(O);
+	GR_CREATOR.graph_creator(P_AMO);
 
 	system("pause");
 	return 0; 

@@ -1,5 +1,6 @@
-class GRAPH;
+class GRAPH_CREATOR;
 
+// Класс вершины графа
 class VERTEX {
 private:
 	int NUM;
@@ -8,29 +9,49 @@ private:
 	vector<int> neigh;
 public:
 	VERTEX(int new_NUM, int new_O_NUM, POINT new_P) : NUM(new_NUM), O_NUM(new_O_NUM), POINT_GR(new_P){};
-	friend GRAPH;
+	void add_neigh(int NEI_V) { neigh.push_back(NEI_V); };
+
+	void print_vertex();
+
+	friend GRAPH_CREATOR;
 };
 
-class GRAPH {
+
+// Класс создания графа
+class GRAPH_CREATOR {
 private:
 	int NUM_VER;	
 	vector<VERTEX> LIST;
-	vector<VERTEX> OPEN;
-	vector<VERTEX> CLOSE;
+	vector<int> OPEN;
+	vector<int> CLOSE;
 	POINT TERM;
 
+	vector<LINE> curr_line_vec, new_lines;
+	vector<OBS> O;
+
 public:
-	GRAPH(POINT ST, POINT new_TERM) : TERM(new_TERM)
+	GRAPH_CREATOR(POINT ST, POINT new_TERM, vector<OBS> new_O) : TERM(new_TERM), O(new_O)
 	{
 		VERTEX NEW_V(0, -1, ST);
-		CLOSE.push_back(NEW_V);
 		LIST.push_back(NEW_V);
+		OPEN.push_back(0);
 		NUM_VER = 1;
 	};
 
-	vector<LINE> create_lines(vector<LINE> curr_line_vec, vector<LINE> new_lines, vector<OBS> O, int j, POINT P);
-	bool check_new_line(vector<LINE> curr_line_vec, vector<OBS> O, LINE L);
-	vector<LINE> create_line_to_term(vector<LINE> curr_line_vec, vector<LINE> new_lines, vector<OBS> O, POINT CUR_P, POINT T);
+	void graph_creator(int P_AMO);
 
-	void graph_creator(vector<OBS> O);
+	vector<LINE> create_lines(int j, int CUR_NUM, POINT P);
+	vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
+	bool check_new_line(LINE L);
+	
+	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
+	int already_exist(POINT P);
+
+	void print_open_close()
+	{
+		cout << endl << "NEW_L.size() = " << new_lines.size();
+		if (OPEN.size() > 0) cout << endl << "OPEN = ";  for (int i = 0; i < OPEN.size(); i++) cout << OPEN[i] << "; ";
+		if (CLOSE.size() > 0) cout << endl << "CLOSE = ";  for (int i = 0; i < CLOSE.size(); i++) cout << CLOSE[i] << "; ";
+		cout << endl << endl;
+	};
 };

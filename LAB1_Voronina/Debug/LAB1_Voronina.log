@@ -1,11 +1,11 @@
 ﻿  Graph.cpp
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(43): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(58): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(89): warning C4018: <: несоответствие типов со знаком и без знака
-  Source.cpp
-  Point_Line.cpp
-  Obstruction.cpp
-  Input_data.cpp
-  Создание кода...
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.h(53): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.h(54): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(36): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(107): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(122): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(137): warning C4018: <: несоответствие типов со знаком и без знака
+d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(158): warning C4018: <: несоответствие типов со знаком и без знака
   LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.exe
   LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.pdb (Partial PDB)
