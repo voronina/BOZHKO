@@ -4,14 +4,18 @@ class GRAPH_CREATOR;
 class VERTEX {
 private:
 	int NUM;
+	int PARENT;
 	int O_NUM;
 	POINT POINT_GR;
 	vector<int> neigh;
 public:
-	VERTEX(int new_NUM, int new_O_NUM, POINT new_P) : NUM(new_NUM), O_NUM(new_O_NUM), POINT_GR(new_P){};
+	VERTEX(int new_NUM, int new_O_NUM, POINT new_P, int new_PAR) : NUM(new_NUM), O_NUM(new_O_NUM), POINT_GR(new_P), PARENT(new_PAR) {};
 	void add_neigh(int NEI_V) { neigh.push_back(NEI_V); };
 
 	void print_vertex();
+
+	int g_O_NUM() { return O_NUM; };
+	int g_PAR() { return PARENT; };
 
 	friend GRAPH_CREATOR;
 };
@@ -32,7 +36,7 @@ private:
 public:
 	GRAPH_CREATOR(POINT ST, POINT new_TERM, vector<OBS> new_O) : TERM(new_TERM), O(new_O)
 	{
-		VERTEX NEW_V(0, -1, ST);
+		VERTEX NEW_V(0, -1, ST, -1);
 		LIST.push_back(NEW_V);
 		OPEN.push_back(0);
 		NUM_VER = 1;
@@ -42,10 +46,13 @@ public:
 
 	vector<LINE> create_lines(int j, int CUR_NUM, POINT P);
 	vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
-	bool check_new_line(LINE L);
+	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
+	bool check_new_line(LINE L, int flag_obs);
 	
 	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
 	int already_exist(POINT P);
+
+	vector<VERTEX> g_LIST() { return LIST;  };
 
 	void print_open_close()
 	{
