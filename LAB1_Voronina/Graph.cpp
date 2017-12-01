@@ -8,17 +8,13 @@ void GRAPH_CREATOR::graph_creator(int P_AMO)
 
 	int CUR_NUM = OPEN[0];
 	int CURR_O_NUM;
-	POINT CUR_P = LIST[CUR_NUM].POINT_GR;
 
-	for (int i = 0; i < P_AMO; i++)
+	for (int i = 0; i < P_AMO - 1; i++)
 	{
 		CUR_NUM = OPEN[0];   
 		CURR_O_NUM = LIST[CUR_NUM].O_NUM;
 
-		//if (CURR_O_NUM != (O.size() - 1))
-		//{
 		all_new_lines(CUR_NUM);
-		//}
 
 		CLOSE.push_back(OPEN[0]);
 		OPEN.erase(OPEN.begin());
@@ -52,8 +48,6 @@ void GRAPH_CREATOR::all_new_lines(int CUR_NUM)
 
 	curr_line_vec.clear();
 }
-
-
 
 // Проведение новой линии
 vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
@@ -107,7 +101,8 @@ vector<LINE> GRAPH_CREATOR::create_line_to_term(POINT CUR_P, int CUR_NUM, POINT 
 {
 	// Проверка для терминальной вершины
 	LINE curr_line = curr_line.create_line(CUR_P, TERM);
-	if (check_new_line(curr_line, 0) && already_exist(TERM) < 0 )
+
+	if (check_new_line(curr_line, 2))
 	{ 
 		curr_line_vec.push_back(curr_line);
 		create_new_bound(CUR_P, TERM, -2, CUR_NUM);
@@ -119,12 +114,18 @@ vector<LINE> GRAPH_CREATOR::create_line_to_term(POINT CUR_P, int CUR_NUM, POINT 
 void GRAPH_CREATOR::create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM)
 {
 	int num = already_exist(P2);
+	double w = find_weight(P1, P2);
+
 	if ( num == -1 )
 	{
 		VERTEX NEW_V(NUM_VER, j, P2, CUR_NUM);
+
 		NEW_V.add_neigh(CUR_NUM);
+		NEW_V.add_weight(w);
+
 		LIST[CUR_NUM].add_neigh(NUM_VER);
-		LIST[CUR_NUM].add_weight(find_weight(P1,P2));
+		LIST[CUR_NUM].add_weight(w);
+
 		LIST.push_back(NEW_V);
 		OPEN.push_back(NUM_VER);
 		NUM_VER++;
@@ -132,8 +133,10 @@ void GRAPH_CREATOR::create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM)
 	else
 	{
 		LIST[num].add_neigh(CUR_NUM);
+		LIST[num].add_weight(w);
+
 		LIST[CUR_NUM].add_neigh(num);
-		LIST[CUR_NUM].add_weight(find_weight(P1, P2));
+		LIST[CUR_NUM].add_weight(w);
 	}
 }
 
@@ -153,6 +156,7 @@ double GRAPH_CREATOR::find_weight(POINT P1, POINT P2)
 	return res;
 }
 
+
 // Проверка на пересечение с существующими линиями
 bool GRAPH_CREATOR::check_new_line(LINE L_curr, int flag_obs)
 {
@@ -164,16 +168,16 @@ bool GRAPH_CREATOR::check_new_line(LINE L_curr, int flag_obs)
 		for (int j = 0; j < O[i].g_N(); j++)
 		{
 			inter.zero_point();
-			if (L_curr.intersect(L_curr, (O[i].g_L())[j], inter) && ( !inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2())) ) { return false; }
-			if ( flag_obs != 1 ) if (L_curr.equivalent(L_curr, (O[i].g_L())[j])) { return false; }
+			if (L_curr.intersect(L_curr, (O[i].g_L())[j], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { return false; }
+			if (flag_obs < 1) { if (L_curr.equivalent(L_curr, (O[i].g_L())[j])) { return false; } }
 		}
 	}
 
 	for (int i = 0; i < new_lines.size(); i++)
 	{
 		inter.zero_point();
-		if (L_curr.intersect(L_curr, new_lines[i], inter) && ( !inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2())) ) { return false; }
-		if (L_curr.equivalent(L_curr, new_lines[i])) { return false; }
+		if (L_curr.intersect(L_curr, new_lines[i], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { return false; }
+		if (flag_obs < 2) { if (L_curr.equivalent(L_curr, new_lines[i])) { return false; } }
 	}
 
 	return true;
@@ -182,13 +186,13 @@ bool GRAPH_CREATOR::check_new_line(LINE L_curr, int flag_obs)
 // Печать данных о вершине
 void VERTEX::print_vertex()
 {
-	cout << endl << "NUM = " << NUM << /* " O_NUM = " << O_NUM << */ " PAR = " << PARENT << endl;
+	cout << endl << "VER = " << NUM << /* " O_NUM = " << O_NUM <<  " PAR = " << PARENT <<*/ endl;
 	POINT_GR.print_point();
 	cout << "NEI = ";
 	for (int i = 0; i < neigh.size(); i++) cout << neigh[i] << "; ";
 	cout << endl;
-	cout << "WEI = ";
+	//cout << "WEI = ";
 	//for (int i = 0; i < weight.size(); i++) cout << weight[i] << "; ";
-	cout << endl << endl;
-}
+	//cout << endl << endl;
+}                        
 

@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Obstruction.h" />
     <ClInclude Include="Pont_Line.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Input_data.cpp" />
     <ClCompile Include="Obstruction.cpp" />
     <ClCompile Include="Point_Line.cpp" />

@@ -24,17 +24,14 @@ int main()
 
 	int TERM_NUM = LIST.size();
 	for (int i = 0; i < LIST.size(); i++) if (LIST[i].g_O_NUM() == -2) TERM_NUM = i;
-	
-	vector<int> RESULT;
-	int i = TERM_NUM;	
-	while (i >= 0)
-	{
-		RESULT.push_back(i);
-		i = LIST[i].g_PAR();
-	}
 
-	cout << " RESULT = ";
-	for (int i = RESULT.size() - 1; i >= 0; i--) cout << RESULT[i] << "; ";
+	double MAX_WEI = GR_CREATOR.find_weight(B.g_P()[0], B.g_P()[2]) + 1000;
+	DIJKSTRA DIJ(LIST, MAX_WEI, TERM_NUM);
+
+	vector<int> PATH = DIJ.algo();
+
+	cout << endl << "PATH = " << endl;
+	for (int i = 0; i < PATH.size(); i++) cout << PATH[i] << " ";
 	cout << endl;
 
 	system("pause");

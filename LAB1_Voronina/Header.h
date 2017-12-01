@@ -15,6 +15,7 @@ using namespace std;
 #include "Pont_Line.h"
 #include "Obstruction.h" 
 #include "Graph.h"
+#include "Dijkstra.h"
 
 #define OBS_AMO 2
 

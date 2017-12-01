@@ -12,12 +12,15 @@ private:
 public:
 	VERTEX(int new_NUM, int new_O_NUM, POINT new_P, int new_PAR) : NUM(new_NUM), O_NUM(new_O_NUM), POINT_GR(new_P), PARENT(new_PAR) {};
 	void add_neigh(int NEI_V) { neigh.push_back(NEI_V); };
-	void add_weight(int NEI_W) { weight.push_back(NEI_W); };
+	void add_weight(double NEI_W) { weight.push_back(NEI_W); };
 
 	void print_vertex();
 
 	int g_O_NUM() { return O_NUM; };
 	int g_PAR() { return PARENT; };
+	vector<int> g_nei() { return  neigh; };
+	vector<double> g_wei() { return  weight; };
+	//int g_wei_i(int i) { return  weight[i]; };
 
 	friend GRAPH_CREATOR;
 };
@@ -50,6 +53,7 @@ public:
 	vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
 	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
 	bool check_new_line(LINE L, int flag_obs);
+	bool check_new_line_1(LINE L, int flag_obs);
 	
 	void all_new_lines(int CUR_NUM);
 
