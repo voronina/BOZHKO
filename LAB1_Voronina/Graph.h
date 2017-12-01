@@ -8,9 +8,11 @@ private:
 	int O_NUM;
 	POINT POINT_GR;
 	vector<int> neigh;
+	vector<double> weight;
 public:
 	VERTEX(int new_NUM, int new_O_NUM, POINT new_P, int new_PAR) : NUM(new_NUM), O_NUM(new_O_NUM), POINT_GR(new_P), PARENT(new_PAR) {};
 	void add_neigh(int NEI_V) { neigh.push_back(NEI_V); };
+	void add_weight(int NEI_W) { weight.push_back(NEI_W); };
 
 	void print_vertex();
 
@@ -49,8 +51,11 @@ public:
 	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
 	bool check_new_line(LINE L, int flag_obs);
 	
+	void all_new_lines(int CUR_NUM);
+
 	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
 	int already_exist(POINT P);
+	double find_weight(POINT P1, POINT P2);
 
 	vector<VERTEX> g_LIST() { return LIST;  };
 

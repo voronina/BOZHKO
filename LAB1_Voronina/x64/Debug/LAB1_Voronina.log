@@ -1,15 +1,18 @@
-﻿  Graph.cpp
-  Source.cpp
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\source.cpp(25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\source.cpp(37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Point_Line.cpp
-  Obstruction.cpp
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\obstruction.cpp(35): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\obstruction.cpp(36): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\obstruction.cpp(37): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-  Input_data.cpp
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\input_data.cpp(25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\mag\desktop\божко\bozhko\lab1_voronina\input_data.cpp(47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\Божко\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.exe
-  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\Божко\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.pdb (Partial PDB)
+﻿Построение начато 15.11.2017 17:29:08.
+     1>Проект "C:\Users\student\Desktop\LAB1_Voronina\LAB1_Voronina.vcxproj" в узле 2 (целевые объекты Build).
+       Файл проекта содержит ToolsVersion="15.0". Данный набор инструментов является неизвестным или отсутствует. Для устранения этой ошибки можно установить для данного набора инструментов соответствующую версию .NET Framework. Считается, что проект содержит ToolsVersion="4.0".
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt Source.cpp
+         Source.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\student\Desktop\LAB1_Voronina\x64\Debug\LAB1_Voronina.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\student\Desktop\LAB1_Voronina\x64\Debug\LAB1_Voronina.pdb" /SUBSYSTEM:CONSOLE,"5.02" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\student\Desktop\LAB1_Voronina\x64\Debug\LAB1_Voronina.lib" /MACHINE:X64 x64\Debug\Input_data.obj
+         x64\Debug\Obstruction.obj
+         x64\Debug\Point_Line.obj
+         x64\Debug\Source.obj
+         x64\Debug\Graph.obj
+         LAB1_Voronina.vcxproj -> C:\Users\student\Desktop\LAB1_Voronina\x64\Debug\LAB1_Voronina.exe
+     1>Построение проекта "C:\Users\student\Desktop\LAB1_Voronina\LAB1_Voronina.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:00.53

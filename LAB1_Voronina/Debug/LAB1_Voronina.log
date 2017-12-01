@@ -1,11 +1,12 @@
 ﻿  Graph.cpp
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.h(60): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.h(61): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(37): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(139): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(154): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(169): warning C4018: <: несоответствие типов со знаком и без знака
-d:\bozhko\bozhko\bozhko\lab1_voronina\graph.cpp(190): warning C4018: <: несоответствие типов со знаком и без знака
-  LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.exe
-  LAB1_Voronina.vcxproj -> D:\BOZHKO\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.pdb (Partial PDB)
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.h(65): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.h(66): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(43): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(127): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(136): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(143): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(162): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(172): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\lab1_voronina\graph.cpp(188): warning C4018: <: несоответствие типов со знаком и без знака
+LINK : fatal error LNK1168: не удается открыть C:\Users\Полина\Desktop\BOZHKO-6e5b3d7c0b0c2c84e1725756da803c7c765239a8\LAB1_Voronina\Debug\LAB1_Voronina.exe для записи
