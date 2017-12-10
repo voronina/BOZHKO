@@ -41,6 +41,10 @@ vector<OBS> OBS_read()
 // Чтение параметров границ
 OBS border_read()
 {
+	// Развлечение Полечки :D
+	cout << "s legkim parom" << endl;
+	getchar();
+
 	// Чтение границ области видимости
 	string str = ".\\INPUTS\\Borders.txt";
 	vector<double> border_vec = read_data(str);

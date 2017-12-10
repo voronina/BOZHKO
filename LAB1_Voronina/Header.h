@@ -12,6 +12,7 @@
 
 using namespace std;
 
+#include "JSON_reader.h"
 #include "Pont_Line.h"
 #include "Obstruction.h" 
 #include "Graph.h"

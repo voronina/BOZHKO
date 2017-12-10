@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Полина\Desktop\BOZHKO\BOZHKO\LAB1_Voronina\picojson-master;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -142,12 +143,14 @@
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="JSON_reader.h" />
     <ClInclude Include="Obstruction.h" />
     <ClInclude Include="Pont_Line.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Input_data.cpp" />
+    <ClCompile Include="JSON_reader.cpp" />
     <ClCompile Include="Obstruction.cpp" />
     <ClCompile Include="Point_Line.cpp" />
     <ClCompile Include="Source.cpp" />

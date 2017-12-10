@@ -3,8 +3,9 @@
 
 int main()
 {
+	json_reader();
 	// Инициализация границ и препятствий
-	OBS B = border_read();
+	/*OBS B = border_read();
 	vector<OBS> O = OBS_read();
 
 	// Стартовая и конечная точки
@@ -31,10 +32,10 @@ int main()
 	vector<int> PATH = DIJ.algo();
 
 	cout << endl << "PATH = " << endl;
-	for (int i = 0; i < PATH.size(); i++) cout << PATH[i] << " ";
+	for (int i = PATH.size() - 1; i >= 0; i--) cout << PATH[i] << " ";
 	cout << endl;
 
 	system("pause");
-	return 0; 
+	return 0; */
 }
 
