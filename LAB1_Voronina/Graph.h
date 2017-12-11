@@ -17,6 +17,7 @@ public:
 	void print_vertex();
 
 	int g_O_NUM() { return O_NUM; };
+	POINT g_P() { return POINT_GR; };
 	int g_PAR() { return PARENT; };
 	vector<int> g_nei() { return  neigh; };
 	vector<double> g_wei() { return  weight; };
@@ -30,16 +31,20 @@ public:
 class GRAPH_CREATOR {
 private:
 	int NUM_VER;	
+
+	vector<OBS> O;
+	OBS B;
+
 	vector<VERTEX> LIST;
 	vector<int> OPEN;
 	vector<int> CLOSE;
 	POINT TERM;
 
-	vector<LINE> curr_line_vec, new_lines;
-	vector<OBS> O;
-
 public:
-	GRAPH_CREATOR(POINT ST, POINT new_TERM, vector<OBS> new_O) : TERM(new_TERM), O(new_O)
+
+	vector<LINE> curr_line_vec, new_lines;
+
+	GRAPH_CREATOR(POINT ST, POINT new_TERM, vector<OBS> new_O, OBS new_B) : TERM(new_TERM), O(new_O), B(new_B)
 	{
 		VERTEX NEW_V(0, -1, ST, -1);
 		LIST.push_back(NEW_V);
@@ -69,4 +74,8 @@ public:
 		if (CLOSE.size() > 0) cout << endl << "CLOSE = ";  for (int i = 0; i < CLOSE.size(); i++) cout << CLOSE[i] << "; ";
 		cout << endl << endl;
 	};
+
+
+	// NEW
+	bool on_free_space(POINT P);
 };

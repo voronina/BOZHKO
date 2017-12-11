@@ -14,16 +14,14 @@ int main()
 	OBS B = border_create(ST, TERM);
 	B.obs_print(-1);
 	vector<OBS> O = data.polygons;
-	//for (int i = 0; i < O.size(); i++) O[i].obs_print(i+1);
-
-	O.push_back(B);
+	for (int i = 0; i < O.size(); i++) O[i].obs_print(i);
 
 	int P_AMO = 2;
 	for (int i = 0; i < O.size(); i++) P_AMO += O[i].g_N();
 
-	GRAPH_CREATOR GR_CREATOR(ST, TERM, O);
+	GRAPH_CREATOR GR_CREATOR(ST, TERM, O, B);
 	GR_CREATOR.graph_creator(P_AMO);
-	vector<VERTEX> LIST = GR_CREATOR.g_LIST();
+	/*vector<VERTEX> LIST = GR_CREATOR.g_LIST();
 
 	int TERM_NUM = LIST.size();
 	for (int i = 0; i < LIST.size(); i++) if (LIST[i].g_O_NUM() == -2) TERM_NUM = i;
@@ -35,7 +33,7 @@ int main()
 
 	cout << endl << "PATH = " << endl;
 	for (int i = PATH.size() - 1; i >= 0; i--) cout << PATH[i] << " ";
-	cout << endl;
+	cout << endl;*/
 
 	system("pause");
 	return 0; 

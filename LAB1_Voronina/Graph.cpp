@@ -1,8 +1,111 @@
 #include "Header.h"
 
-
 // Создание графа
 void GRAPH_CREATOR::graph_creator(int P_AMO)
+{
+	print_open_close();
+
+	LIST[OPEN[0]].g_P().print_point();
+
+	//cout << on_free_space(LIST[OPEN[0]].g_P()) << endl;
+
+	while (!on_free_space(LIST[OPEN[0]].g_P()) && OPEN.size() > 1)
+	{
+		CLOSE.push_back(OPEN[0]);
+		OPEN.erase(OPEN.begin());
+	}
+	
+	int CUR_NUM = OPEN[0];
+
+	all_new_lines(CUR_NUM);
+
+	CLOSE.push_back(OPEN[0]);
+	OPEN.erase(OPEN.begin());
+
+	print_open_close();
+
+	//if (OPEN.size() == 0)
+
+	// int CUR_NUM_PREV = CUR_NUM;
+
+	/*print_open_close();
+
+	int CUR_NUM = OPEN[0];
+	int CURR_O_NUM;
+	int i = 0;
+
+	//for (int i = 0; i < P_AMO - 1; i++)
+	while (OPEN.size() > 0)
+	{
+		cout << i << endl;
+		i++;
+
+		CUR_NUM = OPEN[0];
+		CURR_O_NUM = LIST[CUR_NUM].O_NUM;
+
+		all_new_lines(CUR_NUM);
+
+		CLOSE.push_back(OPEN[0]);
+		OPEN.erase(OPEN.begin());
+
+		print_open_close();
+	}*/
+
+	/*for (int i = 0; i < LIST.size(); i++)
+	{
+	LIST[i].print_vertex();
+	}*/
+}
+
+// Проверка на принадледность свободной области
+bool GRAPH_CREATOR::on_free_space(POINT P_check)
+{
+	// Проверка на принадлежность полю
+	if (!B.inside_border(P_check)) return false;
+
+	// Проверка на попадание в одно из препятствий 
+	for (int i = 0; i < O.size(); i++) if (O[i].inside_border(P_check)) { cout << " i = " << i << endl; return false; }
+
+	return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Создание графа
+/*void GRAPH_CREATOR::graph_creator(int P_AMO)
 {
 	print_open_close();
 
@@ -27,11 +130,11 @@ void GRAPH_CREATOR::graph_creator(int P_AMO)
 		print_open_close();
 	}
 
-	/*for (int i = 0; i < LIST.size(); i++)
+	for (int i = 0; i < LIST.size(); i++)
 	{
 		LIST[i].print_vertex();
-	}*/
-}
+	}
+}*/
 
 
 

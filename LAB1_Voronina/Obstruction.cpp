@@ -20,26 +20,31 @@ void OBS::create_border()
 }
 
 // ѕроверка на принадлежность области
-bool OBS::inside_border(POINT P)
+bool OBS::inside_border(POINT P_in)
 {
+	for (int i = 0; i < P.size(); i++) if (P_in.equivalent(P[i])) return false;
+	
 	POINT mid_p = L[0].middle();
 	POINT inter_point(0, 0);
-
-	LINE BEAM = BEAM.create_line(P, mid_p);
-
-	bool ans = 1;
+	
+	LINE BEAM = BEAM.create_line(P_in, mid_p);
 	int bor_counter = 0;
-
-	for (int i = 0; i < N; i++)
+	int bor_counter_help = 0;
+	for (int i = 0; i < L.size(); i++)
 	{
-		ans = ans * BEAM.intersect(BEAM, L[i], inter_point);
-		ans = ans * BEAM.belong(inter_point);
-		ans = ans * L[i].belong(inter_point);
-		if (ans == 1) bor_counter ++;
-		ans = 1;
+		if (BEAM.intersect_line(BEAM, L[i], inter_point))  bor_counter++; 
+		for (int i = 0; i < P.size(); i++) if (P_in.equivalent(P[i]))
+		{
+			bor_counter--;
+			bor_counter_help++;
+		}
 	}
+	bor_counter = bor_counter + bor_counter_help / 2;
 
-	if ( bor_counter % 2 == 1 ) return true;
+	if (bor_counter % 2 == 1)  return true;
+
+	for (int i = 0; i < L.size(); i++) if (L[i].belong(P_in)) return true;
+
 	return false;
 }
 

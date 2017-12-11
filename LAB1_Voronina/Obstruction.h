@@ -22,13 +22,6 @@ public:
 	void print_points();
 	void print_lines();
 
-	void obs_inersect(LINE L1, LINE L2)
-	{	
-		POINT inter_point(0, 0);
-		bool ans = L1.intersect(L1, L2, inter_point);
-		cout << "TEST = " << ans << endl;
-	};
-
 	void obs_print(int a)
 	{
 		if (a >= 0)	cout << endl << "Obctruction # " << a << endl;

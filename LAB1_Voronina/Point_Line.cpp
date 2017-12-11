@@ -36,8 +36,30 @@ bool LINE::intersect(LINE L1, LINE L2, POINT &res)
 	y = -det(L1.g_A(), L1.g_C(), L2.g_A(), L2.g_C()) / zn;
 	POINT curr_res(x, y);
 	res = curr_res;
-	if( !L1.belong(curr_res) ) return false;
+	if (!L1.belong(curr_res)) return false;
 	if (!L2.belong(curr_res)) return false;
+	return true;
+}
+
+// Проверка на пересечение линий
+bool LINE::intersect_line(LINE L1, LINE L2, POINT &res)
+{
+	double x, y;
+	double zn = det(L1.g_A(), L1.g_B(), L2.g_A(), L2.g_B());
+	if (abs(zn) < EPS)	return false;
+	x = -det(L1.g_C(), L1.g_B(), L2.g_C(), L2.g_B()) / zn;
+	y = -det(L1.g_A(), L1.g_C(), L2.g_A(), L2.g_C()) / zn;
+	POINT curr_res(x, y);
+	res = curr_res;
+
+	if (!L2.belong(curr_res)) return false;
+
+	if (!L1.belong(curr_res))
+	{
+		LINE L_test = L_test.create_line(L1.g_P1(), curr_res);
+		if (!L_test.belong(L1.g_P2()))  return false;
+	}
+
 	return true;
 }
 
@@ -54,7 +76,7 @@ bool LINE::belong(POINT P)
 	if (P1.g_Y() < P2.g_Y()) { min_Y = P1.g_Y(); max_Y = P2.g_Y(); }
 	else { min_Y = P2.g_Y(); max_Y = P1.g_Y(); }
 
-	if ( min_X <= P.g_X() && max_X >= P.g_X() && min_Y <= P.g_Y() && max_Y >= P.g_Y() && abs(res) < EPS ) return true;
+	if (min_X <= P.g_X() && max_X >= P.g_X() && min_Y <= P.g_Y() && max_Y >= P.g_Y() && abs(res) < EPS) return true;
 	return false;
 }
 
@@ -69,8 +91,8 @@ bool LINE::equivalent(LINE L1, LINE L2)
 // Середина отрезка
 POINT LINE::middle()
 {
-	double X = ( P1.g_X() + P2.g_X() ) / 2;
-	double Y = ( P1.g_Y() + P2.g_Y() ) / 2;
+	double X = (P1.g_X() + P2.g_X()) / 2;
+	double Y = (P1.g_Y() + P2.g_Y()) / 2;
 	POINT curr_P(X, Y);
 	return curr_P;
 }

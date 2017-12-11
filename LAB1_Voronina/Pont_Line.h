@@ -35,6 +35,7 @@ public:
 	LINE create_line(POINT P1, POINT P2);
 	double det(double a, double b, double c, double d);
 	bool intersect(LINE m, LINE n, POINT & res);
+	bool intersect_line(LINE m, LINE n, POINT & res);
 	bool equivalent(LINE m, LINE n);
 	bool belong(POINT P);
 	POINT middle();
