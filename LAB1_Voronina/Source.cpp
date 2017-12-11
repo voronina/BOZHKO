@@ -14,7 +14,7 @@ int main()
 	OBS B = border_create(ST, TERM);
 	B.obs_print(-1);
 	vector<OBS> O = data.polygons;
-	for (int i = 0; i < O.size(); i++) O[i].obs_print(i+1);
+	//for (int i = 0; i < O.size(); i++) O[i].obs_print(i+1);
 
 	O.push_back(B);
 

@@ -1,13 +1,17 @@
-﻿  Graph.cpp
+﻿  Source.cpp
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(36): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_reader.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_reader.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(68): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(69): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(70): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(39): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(146): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(166): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(176): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(192): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\source.cpp(22): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\source.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
+  JSON_reader.cpp
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(36): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_reader.h(38): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_reader.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(69): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
   LAB1_Voronina.vcxproj -> C:\Users\Полина\Desktop\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.exe
   LAB1_Voronina.vcxproj -> C:\Users\Полина\Desktop\BOZHKO\BOZHKO\LAB1_Voronina\Debug\LAB1_Voronina.pdb (Partial PDB)

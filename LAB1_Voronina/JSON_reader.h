@@ -57,8 +57,8 @@ class SourceDataParser {
 private:
 	picojson::value & v;
 
-	const string START_POINT = "start_point";
-	const string END_POINT = "end_point";
+	const string START_POINT = "start";
+	const string END_POINT = "finish";
 	const string POLYGONS = "polygons";
 
 	vector<OBS> parsePolygons() 
