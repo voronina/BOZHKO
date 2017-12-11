@@ -8,11 +8,12 @@ vector<OBS> OBS_read()
 	string str3 = ".txt";
 	string str2, str4;
 
-	//OBS* O = (OBS*)malloc(OBS_AMO*(sizeof(OBS))); // Массив препятствий
+	POINT Y(0, 0);
+
 	vector<OBS> O;
 
 	vector<double> init_mas;
-	POINT* points;
+	vector<POINT> points;
 	int N = 0;
 
 	int k = 1;
@@ -25,8 +26,7 @@ vector<OBS> OBS_read()
 		N = init_mas.size();
 		points = vector_to_POINTS(init_mas, N);
 
-		OBS O_curr(points, N/2);
-		//O[k-1] = O_curr;
+		OBS O_curr(Y, points);
 		O.push_back(O_curr);
 
 		cout << "Obstruction " << k << endl;
@@ -41,16 +41,14 @@ vector<OBS> OBS_read()
 // Чтение параметров границ
 OBS border_read()
 {
-	// Развлечение Полечки :D
-	cout << "s legkim parom" << endl;
-	getchar();
+	POINT Y(0, 0);
 
 	// Чтение границ области видимости
 	string str = ".\\INPUTS\\Borders.txt";
 	vector<double> border_vec = read_data(str);
 	int N_B = border_vec.size();
-	POINT* border = vector_to_POINTS(border_vec, N_B);
-	OBS B(border, N_B / 2);
+	vector<POINT> border = vector_to_POINTS(border_vec, N_B);
+	OBS B(Y, border);
 
 	cout << "Borders" << endl;
 	B.print_points();
@@ -59,13 +57,14 @@ OBS border_read()
 }
 
 // Создание вектора точек
-POINT* vector_to_POINTS(vector<double> init_mas, int N)
+vector<POINT> vector_to_POINTS(vector<double> init_mas, int N)
 {
-	POINT* points = (POINT *)malloc(N * sizeof(POINT));
+	vector<POINT> points; 
+
 	for (int i = 0; i < N; i += 2)
 	{
 		POINT P(init_mas[i], init_mas[i + 1]);
-		points[i / 2] = P;
+		points.push_back(P);
 	}
 	return points;
 }
@@ -96,3 +95,16 @@ vector<double> read_data(string str)
 
 	return init_mas;
 }
+
+
+// Инициализация границ и препятствий
+/*OBS B = border_read();
+vector<OBS> O = OBS_read();
+
+// Стартовая и конечная точки
+POINT ST(1,1);
+POINT TERM(9,9);
+cout << "START: " << ST.g_X() << " " << ST.g_Y() << endl;
+cout << "FINISH: " << TERM.g_X() << " " << TERM.g_Y() << endl;
+
+O.push_back(B);*/

@@ -1,34 +1,10 @@
-#include <iostream>
-#include <fstream>
-#include <streambuf>
-#include <vector>
-#include <picojson.h>
-
-using namespace std;
-
-class Point {
-public:
-	double x;
-	double y;
-
-	Point(double x, double y) : x(x), y(y) {};
-};
-
-class Polygon {
-public:
-	Point center;
-	vector<Point> vertices;
-
-	Polygon(Point p, vector<Point> vertices) : center(p), vertices(vertices) {};
-};
-
 class SourceData {
 public:
-	Point startPoint;
-	Point endPoint;
-	vector<Polygon> polygons;
+	POINT startPoint;
+	POINT endPoint;
+	vector<OBS> polygons;
 
-	SourceData(Point startPoint, Point endPoint, vector<Polygon> polygons) : startPoint(startPoint), endPoint(endPoint), polygons(polygons) {};
+	SourceData(POINT startPoint, POINT endPoint, vector<OBS> polygons) : startPoint(startPoint), endPoint(endPoint), polygons(polygons) {};
 };
 
 class PointParser {
@@ -41,9 +17,9 @@ private:
 public:
 	PointParser(picojson::value & v) : v(v) {};
 
-	Point parse() 
+	POINT parse() 
 	{
-		return Point(
+		return POINT(
 			v.get(X).get<double>(),
 			v.get(Y).get<double>());
 	};
@@ -55,12 +31,12 @@ private:
 
 	const string VERTICES = "vertices";
 
-	vector<Point> parseVertices() 
+	vector<POINT> parseVertices() 
 	{
-		vector<Point> vertices;
+		vector<POINT> vertices;
 		auto verticesJson = v.get(VERTICES).get<picojson::array>();
 		for (int i = 0; i < verticesJson.size(); ++i) {
-			Point p = PointParser(verticesJson[i]).parse();
+			POINT p = PointParser(verticesJson[i]).parse();
 			vertices.push_back(p);
 		}
 		return vertices;
@@ -69,11 +45,11 @@ private:
 public:
 	PolygonParser(picojson::value & v) : v(v) {};
 
-	Polygon parse() 
+	OBS parse() 
 	{
-		Point center = PointParser(v).parse();
-		vector<Point> verices = parseVertices();
-		return Polygon(center, verices);
+		POINT center = PointParser(v).parse();
+		vector<POINT> verices = parseVertices();
+		return OBS(center, verices);
 	};
 };
 
@@ -85,13 +61,13 @@ private:
 	const string END_POINT = "end_point";
 	const string POLYGONS = "polygons";
 
-	vector<Polygon> parsePolygons() 
+	vector<OBS> parsePolygons() 
 	{
-		vector<Polygon> polygons;
+		vector<OBS> polygons;
 		auto polygonsJson = v.get(POLYGONS).get<picojson::array>();
 		for (int i = 0; i < polygonsJson.size(); ++i) 
 		{
-			Polygon p = PolygonParser(polygonsJson[i]).parse();
+			OBS p = PolygonParser(polygonsJson[i]).parse();
 			polygons.push_back(p);
 		}
 		return polygons;
@@ -103,11 +79,12 @@ public:
 
 	SourceData parse() 
 	{
-		Point startPoint = PointParser(v.get(START_POINT)).parse();
-		Point endPoint = PointParser(v.get(END_POINT)).parse();
+		POINT startPoint = PointParser(v.get(START_POINT)).parse();
+		POINT endPoint = PointParser(v.get(END_POINT)).parse();
 		return SourceData(startPoint, endPoint, parsePolygons());
 	};
 
 };
 
-void json_reader();
+SourceData json_reader();
+OBS border_create(POINT ST, POINT TERM);

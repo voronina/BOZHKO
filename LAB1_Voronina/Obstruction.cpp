@@ -8,14 +8,14 @@ void OBS::print_points()
 } 
 
 // ќпределение пр€мых, составл€ющих преп€тствие
-void OBS::create_border(LINE* L)
+void OBS::create_border()
 {
 	int i2 = 0;
 	for (int i1 = 0; i1 < N; i1++)
 	{
 		i2 = (i1 != N - 1) ? (i1 + 1) : 0;
 		LINE L_curr = L_curr.create_line(P[i1], P[i2]);
-		L[i1] = L_curr;
+		L.push_back(L_curr);
 	}
 }
 

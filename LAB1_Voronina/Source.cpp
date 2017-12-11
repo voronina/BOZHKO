@@ -1,18 +1,20 @@
 #include "Header.h"
 
-
 int main()
 {
-	json_reader();
-	// Инициализация границ и препятствий
-	/*OBS B = border_read();
-	vector<OBS> O = OBS_read();
+	SourceData data = json_reader();
 
 	// Стартовая и конечная точки
-	POINT ST(1,1);
-	POINT TERM(9,9);
+	POINT ST = data.startPoint;
+	POINT TERM = data.endPoint;
 	cout << "START: " << ST.g_X() << " " << ST.g_Y() << endl;
 	cout << "FINISH: " << TERM.g_X() << " " << TERM.g_Y() << endl;
+
+	// Инициализация границ и препятствий
+	OBS B = border_create(ST, TERM);
+	B.obs_print(-1);
+	vector<OBS> O = data.polygons;
+	for (int i = 0; i < O.size(); i++) O[i].obs_print(i+1);
 
 	O.push_back(B);
 
@@ -36,6 +38,6 @@ int main()
 	cout << endl;
 
 	system("pause");
-	return 0; */
+	return 0; 
 }
 

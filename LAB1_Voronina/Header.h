@@ -3,18 +3,23 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <iostream>
+#include <ostream>
+#include <fstream>
+#include <streambuf>
 #include <vector>
 #include <time.h>
 #include <math.h>
 #include <string> 
-#include <fstream>
+
+#include <picojson.h>
 
 using namespace std;
 
-#include "JSON_reader.h"
 #include "Pont_Line.h"
 #include "Obstruction.h" 
+
+#include "JSON_reader.h"
+
 #include "Graph.h"
 #include "Dijkstra.h"
 
@@ -22,7 +27,6 @@ using namespace std;
 
 // Функции преобразования к вектору точек и чтения данных
 vector<double> read_data(string str);
-POINT* vector_to_POINTS(vector<double> mas, int N);
+vector<POINT> vector_to_POINTS(vector<double> mas, int N);
 OBS border_read();
 vector<OBS> OBS_read();
-

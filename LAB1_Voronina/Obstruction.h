@@ -2,20 +2,21 @@
 class OBS {
 private:
 	int N;
-	POINT* P;
-	LINE* L;
+	POINT center;
+	vector<POINT> P;
+	vector<LINE> L;
 public:
-	OBS(POINT* new_P, int new_N) : P(new_P), N(new_N) 
+	OBS(POINT new_center, vector<POINT> new_P) : center(new_center), P(new_P)
 	{
-		L = (LINE *)malloc(N * sizeof(LINE));
-		create_border(L);
+		N = P.size();
+		create_border();
 	};
 
 	int g_N() { return N; };
-	POINT* g_P() { return P; };
-	LINE* g_L() { return L; };
+	vector<POINT> g_P() { return P; };
+	vector<LINE> g_L() { return L; };
 
-	void create_border(LINE*);
+	void create_border();
 	bool inside_border(POINT P);
 
 	void print_points();
@@ -27,12 +28,14 @@ public:
 		bool ans = L1.intersect(L1, L2, inter_point);
 		cout << "TEST = " << ans << endl;
 	};
-/*
-	void obs_belong()
-	{	POINT inter_point(1, 2);
-	cout << L[0].belong(inter_point); };
 
-	void obs_middle()
-	{	POINT test = L[0].middle();
-	cout << test.g_X() << " " << test.g_Y() << endl;	};*/
+	void obs_print(int a)
+	{
+		if (a >= 0)	cout << endl << "Obctruction # " << a << endl;
+		if (a < 0)	cout << endl << "Border" << endl;
+		for (int i = 0; i < P.size(); i++)
+		{
+			P[i].print_point();
+		}
+	};
 };

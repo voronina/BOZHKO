@@ -22,10 +22,10 @@ void GRAPH_CREATOR::graph_creator(int P_AMO)
 		//print_open_close();
 	}
 
-	for (int i = 0; i < LIST.size(); i++)
+	/*for (int i = 0; i < LIST.size(); i++)
 	{
 		LIST[i].print_vertex();
-	}
+	}*/
 }
 
 
@@ -52,7 +52,7 @@ void GRAPH_CREATOR::all_new_lines(int CUR_NUM)
 // Проведение новой линии
 vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 {
-	POINT* P_curr = O[j].g_P();
+	vector<POINT> P_curr = O[j].g_P();
 	for (int i = 0; i < O[j].g_N(); i++)
 	{
 		LINE curr_line = curr_line.create_line(P, P_curr[i]);
@@ -68,7 +68,7 @@ vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 // Перенос связей из препятствий
 vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
 {
-	POINT* P_curr = O[j].g_P();
+	vector<POINT> P_curr = O[j].g_P();
 	int numb2 = -1;
 	for (int i = 0; i < O[j].g_N(); i++) if (P.equivalent(P_curr[i])) numb2 = i;
 

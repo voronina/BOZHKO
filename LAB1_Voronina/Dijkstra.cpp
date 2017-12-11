@@ -20,7 +20,7 @@ vector<int> DIJKSTRA::algo()
 
 	for (count = 0; count < V - 1; count++)
 	{
-		int min = MAX_WEI;
+		double min = MAX_WEI;
 		for (i = 0; i < V; i++)
 		{
 			if (!visited[i] && distance[i] <= min)
