@@ -23,8 +23,6 @@ using namespace std;
 #include "Graph.h"
 #include "Dijkstra.h"
 
-#define OBS_AMO 2
-
 // Функции преобразования к вектору точек и чтения данных
 vector<double> read_data(string str);
 vector<POINT> vector_to_POINTS(vector<double> mas, int N);

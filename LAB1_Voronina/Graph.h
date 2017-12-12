@@ -59,7 +59,7 @@ public:
 	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
 	bool check_new_line(LINE L, int flag_obs);
 	
-	void all_new_lines(int CUR_NUM);
+	bool all_new_lines(int CUR_NUM);
 
 	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
 	int already_exist(POINT P);
@@ -78,4 +78,6 @@ public:
 
 	// NEW
 	bool on_free_space(POINT P);
+	void new_L(int CUR_NUM);
+	bool check_L(LINE curr_L)
 };

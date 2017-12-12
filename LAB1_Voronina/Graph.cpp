@@ -3,58 +3,36 @@
 // Создание графа
 void GRAPH_CREATOR::graph_creator(int P_AMO)
 {
-	print_open_close();
+	bool ans = false;
+	int CUR_NUM = 0;
 
-	LIST[OPEN[0]].g_P().print_point();
+	//print_open_close();
 
-	//cout << on_free_space(LIST[OPEN[0]].g_P()) << endl;
-
-	while (!on_free_space(LIST[OPEN[0]].g_P()) && OPEN.size() > 1)
+	while (ans == false && OPEN.size() > 0)
 	{
-		CLOSE.push_back(OPEN[0]);
-		OPEN.erase(OPEN.begin());
-	}
-	
-	int CUR_NUM = OPEN[0];
+		while (!on_free_space(LIST[OPEN[0]].g_P()) && OPEN.size() > 1)
+		{
+			//cout << endl << "NOOOOOOOO" ;
+			//LIST[OPEN[0]].print_vertex();
+			CLOSE.push_back(OPEN[0]);
+			OPEN.erase(OPEN.begin());
+		}
 
-	all_new_lines(CUR_NUM);
-
-	CLOSE.push_back(OPEN[0]);
-	OPEN.erase(OPEN.begin());
-
-	print_open_close();
-
-	//if (OPEN.size() == 0)
-
-	// int CUR_NUM_PREV = CUR_NUM;
-
-	/*print_open_close();
-
-	int CUR_NUM = OPEN[0];
-	int CURR_O_NUM;
-	int i = 0;
-
-	//for (int i = 0; i < P_AMO - 1; i++)
-	while (OPEN.size() > 0)
-	{
-		cout << i << endl;
-		i++;
+		if (OPEN.size() == 0) break;
 
 		CUR_NUM = OPEN[0];
-		CURR_O_NUM = LIST[CUR_NUM].O_NUM;
 
-		all_new_lines(CUR_NUM);
+		//ans = all_new_lines(CUR_NUM);
+
 
 		CLOSE.push_back(OPEN[0]);
 		OPEN.erase(OPEN.begin());
 
-		print_open_close();
-	}*/
+		LIST[CUR_NUM].print_vertex();
 
-	/*for (int i = 0; i < LIST.size(); i++)
-	{
-	LIST[i].print_vertex();
-	}*/
+		//print_open_close();
+	}
+
 }
 
 // Проверка на принадледность свободной области
@@ -64,14 +42,38 @@ bool GRAPH_CREATOR::on_free_space(POINT P_check)
 	if (!B.inside_border(P_check)) return false;
 
 	// Проверка на попадание в одно из препятствий 
-	for (int i = 0; i < O.size(); i++) if (O[i].inside_border(P_check)) { cout << " i = " << i << endl; return false; }
+	for (int i = 0; i < O.size(); i++) if (O[i].inside_border(P_check)) { cout << "!!!" << endl; return false; }
 
 	return true;
 }
 
+void GRAPH_CREATOR::new_L(int CUR_NUM)
+{
+	POINT curr_P = LIST[CUR_NUM].g_P();
 
+	for (int i = 0; i < O.size(); i++)
+	{
+		if (i != LIST[CUR_NUM].g_O_NUM)
+		{
+			for (int j = 0; j < O[i].g_P().size(); j++)
+			{
+				LINE new_L = new_L.create_line(curr_P, O[i].g_P()[j]);
 
+			}
+		}
+	}
+}
 
+bool GRAPH_CREATOR::check_L(LINE curr_L)
+{
+	for (int i = 0; i < O.size(); i++)
+	{
+		for (int j = 0; j < O[i].g_L().size(); j++)
+		{
+			if(curr_L)
+		}
+	}
+}
 
 
 
@@ -139,8 +141,10 @@ bool GRAPH_CREATOR::on_free_space(POINT P_check)
 
 
 // Проведение всех возможных линий из текущей точки
-void GRAPH_CREATOR::all_new_lines(int CUR_NUM)
+bool GRAPH_CREATOR::all_new_lines(int CUR_NUM)
 {
+	bool ans = false;
+
 	int CURR_O_NUM = LIST[CUR_NUM].O_NUM;
 	POINT CUR_P = LIST[CUR_NUM].POINT_GR;
 
@@ -150,20 +154,33 @@ void GRAPH_CREATOR::all_new_lines(int CUR_NUM)
 		else /*if (CURR_O_NUM != (O.size() - 1))*/ curr_line_vec = create_into_obs(j, CUR_NUM, CUR_P);
 	}
 
+	int prev_size = curr_line_vec.size();
+
 	curr_line_vec = create_line_to_term(CUR_P, CUR_NUM, TERM);
+
+	if (curr_line_vec.size() - prev_size > 0) ans = true;
 
 	if (curr_line_vec.begin() != curr_line_vec.end()) new_lines.insert(new_lines.end(), curr_line_vec.begin(), curr_line_vec.end());
 
 	curr_line_vec.clear();
+
+	return ans;
 }
 
 // Проведение новой линии
 vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 {
 	vector<POINT> P_curr = O[j].g_P();
-	for (int i = 0; i < O[j].g_N(); i++)
+	for (int i = 0; i < O[j].g_P().size(); i++)
 	{
+		if (!on_free_space(P_curr[i])) { continue; }
+
+		
 		LINE curr_line = curr_line.create_line(P, P_curr[i]);
+
+		POINT ww(6, 1);
+		if (CUR_NUM == 3 && ww.equivalent(P_curr[i])) { cout << "ANS = " << check_new_line(curr_line, 0) << endl; }
+
 		if (check_new_line(curr_line, 0))
 		{
 			curr_line_vec.push_back(curr_line);
@@ -185,7 +202,7 @@ vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
 		int numb1 = ((numb2 - 1) > 0) ? (numb2 - 1) : (O[j].g_N() - 1);
 
 		LINE L1 = (O[j].g_L())[numb1];
-		if (check_new_line(L1, 1))
+		if (check_new_line(L1, 1) /* && on_free_space(L1.g_P1()) && on_free_space(L1.g_P2())*/)
 		{
 			curr_line_vec.push_back(L1);
 			POINT P2_1 = (P.equivalent(L1.g_P1())) ? (L1.g_P2()) : L1.g_P1();
@@ -193,7 +210,7 @@ vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
 		}
 
 		LINE L2 = (O[j].g_L())[numb2];
-		if (check_new_line(L2, 1))
+		if (check_new_line(L2, 1) /*(&& on_free_space(L2.g_P1()) && on_free_space(L2.g_P2())*/)
 		{
 			curr_line_vec.push_back(L2);
 			POINT P2_2 = (P.equivalent(L2.g_P1())) ? (L2.g_P2()) : L2.g_P1();
@@ -269,6 +286,7 @@ double GRAPH_CREATOR::find_weight(POINT P1, POINT P2)
 bool GRAPH_CREATOR::check_new_line(LINE L_curr, int flag_obs)
 {
 	POINT inter(0, 0);
+	POINT ww(6, 1);
 
 	int ans1 = 0;
 	for (int i = 0; i < O.size(); i++)
@@ -276,16 +294,16 @@ bool GRAPH_CREATOR::check_new_line(LINE L_curr, int flag_obs)
 		for (int j = 0; j < O[i].g_N(); j++)
 		{
 			inter.zero_point();
-			if (L_curr.intersect(L_curr, (O[i].g_L())[j], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { return false; }
-			if (flag_obs < 1) { if (L_curr.equivalent(L_curr, (O[i].g_L())[j])) { return false; } }
+			if (L_curr.intersect(L_curr, (O[i].g_L())[j], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { if (ww.equivalent(L_curr.g_P2())) cout << "1" << endl; return false; }
+			if (flag_obs < 1) { if (L_curr.equivalent(L_curr, (O[i].g_L())[j])) { if (ww.equivalent(L_curr.g_P2())) cout << "2" << endl; return false; } }
 		}
 	}
 
 	for (int i = 0; i < new_lines.size(); i++)
 	{
 		inter.zero_point();
-		if (L_curr.intersect(L_curr, new_lines[i], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { return false; }
-		if (flag_obs < 2) { if (L_curr.equivalent(L_curr, new_lines[i])) { return false; } }
+		if (L_curr.intersect(L_curr, new_lines[i], inter) && (!inter.equivalent(L_curr.g_P1()) && !inter.equivalent(L_curr.g_P2()))) { if (ww.equivalent(L_curr.g_P2())) cout << "3" << endl; return false; }
+		if (flag_obs < 2) { if (L_curr.equivalent(L_curr, new_lines[i])) { if (ww.equivalent(L_curr.g_P2())) cout << "4" << endl; return false; } }
 	}
 
 	return true;

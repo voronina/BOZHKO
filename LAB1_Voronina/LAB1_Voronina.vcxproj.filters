@@ -47,9 +47,6 @@
     <ClCompile Include="Graph.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="Input_data.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Dijkstra.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
