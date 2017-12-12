@@ -51,22 +51,25 @@ public:
 		OPEN.push_back(0);
 		NUM_VER = 1;
 	};
-
-	void graph_creator(int P_AMO);
-
-	vector<LINE> create_lines(int j, int CUR_NUM, POINT P);
-	vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
-	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
-	bool check_new_line(LINE L, int flag_obs);
 	
+	void graph_creator();
+	bool on_free_space(POINT P);
+
 	bool all_new_lines(int CUR_NUM);
 
+	bool check_O(LINE L_curr);
+	bool check_new_lines(LINE L_curr);
+
+	vector<LINE> create_lines(int j, int CUR_NUM, POINT P);
+	
 	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
 	int already_exist(POINT P);
 	double find_weight(POINT P1, POINT P2);
 
+	/*vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
+	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
 	vector<VERTEX> g_LIST() { return LIST;  };
-
+	*/
 	void print_open_close()
 	{
 		cout << endl << "NEW_L.size() = " << new_lines.size();
@@ -75,9 +78,4 @@ public:
 		cout << endl << endl;
 	};
 
-
-	// NEW
-	bool on_free_space(POINT P);
-	void new_L(int CUR_NUM);
-	bool check_L(LINE curr_L)
 };

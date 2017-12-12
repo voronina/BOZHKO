@@ -52,7 +52,7 @@ OBS border_create(POINT ST, POINT TERM)
 	P_vec.push_back(POINT((max_X + delta), (max_Y + delta)));
 	P_vec.push_back(POINT((min_X), (max_Y + delta)));
 
-	LINE L_m = L_m.create_line(P_vec[0], P_vec[2]);
+	LINE L_m(P_vec[0], P_vec[2]);
 	POINT P_m = L_m.middle();
 
 	return OBS(P_m, P_vec);

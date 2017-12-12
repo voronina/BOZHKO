@@ -16,11 +16,18 @@ int main()
 	vector<OBS> O = data.polygons;
 	for (int i = 0; i < O.size(); i++) O[i].obs_print(i);
 
-	int P_AMO = 2;
-	for (int i = 0; i < O.size(); i++) P_AMO += O[i].g_N();
+	/*LINE L1(POINT(2, 0), POINT(2, 4));
+	LINE L2(POINT(2, 4), POINT(3, 4));
+	POINT PP(0,3);
+	cout << endl << "ANS = " << L1.intersect_segm(L2) << endl;
+
+	POINT PP(2, 5);
+		cout << endl << "ANS = " << O[1].inside_border(PP) << endl;*/
+
+
 
 	GRAPH_CREATOR GR_CREATOR(ST, TERM, O, B);
-	GR_CREATOR.graph_creator(P_AMO);
+	GR_CREATOR.graph_creator();
 	/*vector<VERTEX> LIST = GR_CREATOR.g_LIST();
 
 	int TERM_NUM = LIST.size();

@@ -146,7 +146,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="JSON_reader.h" />
     <ClInclude Include="Obstruction.h" />
-    <ClInclude Include="Pont_Line.h" />
+    <ClInclude Include="Point_Line.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dijkstra.cpp" />

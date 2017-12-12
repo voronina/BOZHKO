@@ -21,7 +21,12 @@ private:
 	double A, B, C;
 	POINT P1, P2;
 public:
-	LINE(double new_A, double new_B, double new_C, POINT new_P1, POINT new_P2) : A(new_A), B(new_B), C(new_C), P1(new_P1), P2(new_P2) {};
+	LINE(POINT new_P1, POINT new_P2) : P1(new_P1), P2(new_P2)
+	{
+		A = P1.g_Y() - P2.g_Y();
+		B = P2.g_X() - P1.g_X();
+		C = P1.g_X() * P2.g_Y() - P2.g_X() * P1.g_Y();
+	};
 
 	double g_A() { return A; };
 	double g_B() { return B; };
@@ -32,11 +37,21 @@ public:
 
 	void print_line() {  P1.print_point();   P2.print_point(); 	};
 
-	LINE create_line(POINT P1, POINT P2);
 	double det(double a, double b, double c, double d);
-	bool intersect(LINE m, LINE n, POINT & res);
-	bool intersect_line(LINE m, LINE n, POINT & res);
-	bool equivalent(LINE m, LINE n);
-	bool belong(POINT P);
+
+	bool contain(POINT P);
 	POINT middle();
+
+	bool equivalent_line(LINE L);
+	bool equivalent_segm(LINE L);
+
+	double zn(LINE L);
+	double x_sol(LINE L, double zn);
+	double y_sol(LINE L, double zn);
+
+	bool intersect_segm(LINE L);
+	bool intersect_segm_without_P(LINE L);
+	bool intersect_beam(LINE L);
+	bool impos(LINE L); 
+	bool on_beam(LINE L);
 };
