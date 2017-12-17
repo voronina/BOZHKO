@@ -40,6 +40,7 @@ public:
 	double det(double a, double b, double c, double d);
 
 	bool contain(POINT P);
+	bool contain_out(POINT P);
 	POINT middle();
 
 	bool equivalent_line(LINE L);

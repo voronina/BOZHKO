@@ -55,6 +55,14 @@ bool LINE::contain(POINT P)
 	return false;
 }
 
+// Проверка на принадлежность отрезку с выколотыми точками
+bool LINE::contain_out(POINT P)
+{
+	if (P1.equivalent(P) || P2.equivalent(P)) return false;
+	if (contain(P)) return true;
+	return false;
+}
+
 // Вспомогательные расчеты
 double LINE::zn(LINE L) { return det(A, B, L.g_A(), L.g_B());}
 double LINE::x_sol(LINE L, double zn) { return -det(C, B, L.g_C(), L.g_B()) / zn;}
@@ -64,7 +72,7 @@ double LINE::y_sol(LINE L, double zn) { return -det(A, C, L.g_A(), L.g_C()) / zn
 bool LINE::intersect_segm(LINE L)
 {
 	if (equivalent_segm(L)) return true;
-	if(impos(L)) return true;
+	//if(impos(L)) return true;
 	if (abs(zn(L)) < EPS)	return false;
 	POINT res = POINT(x_sol(L, zn(L)), y_sol(L, zn(L)));
 	if (!contain(res) || !L.contain(res)) return false;
@@ -80,7 +88,7 @@ bool LINE::intersect_segm_without_P(LINE L)
 	if (!contain(res) || !L.contain(res)) return false;
 	if(res.equivalent(P1) || res.equivalent(P2)) return false;
 	if (res.equivalent(L.g_P1()) || res.equivalent(L.g_P2())) return false;
-	if (impos(L)) return true; 
+	//if (impos(L)) return true; 
 	return true;
 }
 
@@ -88,7 +96,7 @@ bool LINE::intersect_segm_without_P(LINE L)
 bool LINE::intersect_beam(LINE L)
 {
 	if (equivalent_segm(L)) return true;
-	if (impos(L)) return true;
+	if (impos(L)) return true; //!!!!
 	if (on_beam(L)) return true;
 	if (abs(zn(L)) < EPS)	return false;
 	POINT res = POINT(x_sol(L, zn(L)), y_sol(L, zn(L)));
@@ -103,35 +111,40 @@ bool LINE::intersect_beam(LINE L)
 }
 
 // Проверка частичного наложения
-ПРОБЛЕМА
 bool LINE::impos(LINE L)
 {
 	if (!equivalent_line(L)) return false;
-	if (!contain(L.g_P1()) && !contain(L.g_P2()) && !L.contain(P1) && !L.contain(P2) ) return false;
+	
+	if (!contain_out(L.g_P1()) && !contain_out(L.g_P2()) && !L.contain_out(P1) && !L.contain_out(P2) ) return false;
+
 	return true;
 }
 
-// Проверка принадлежности отрезка лучу
+
+
+// Проверка принадлежности точки лучу
 bool LINE::on_beam(LINE L)
 {
 	double X = P1.g_X();
 	double Y = P1.g_Y();
 
 	if (!equivalent_line(L)) return false;
-	bool si_x = ( X >= P2.g_X()) ? true : false;
-	bool si_y = ( Y >= P2.g_Y()) ? true : false;
+	bool si_x = (X >= P2.g_X()) ? true : false;
+	bool si_y = (Y >= P2.g_Y()) ? true : false;
 
-	bool si_x_P1 = ( X >= L.g_P1().g_X()) ? true : false;
-	bool si_y_P1 = ( Y >= L.g_P1().g_Y()) ? true : false;
+	bool si_x_P1 = (X >= L.g_P1().g_X()) ? true : false;
+	bool si_y_P1 = (Y >= L.g_P1().g_Y()) ? true : false;
 
-	bool si_x_P2 = ( X >= L.g_P2().g_X()) ? true : false;
-	bool si_y_P2 = ( Y >= L.g_P2().g_Y()) ? true : false;
+	bool si_x_P2 = (X >= L.g_P2().g_X()) ? true : false;
+	bool si_y_P2 = (Y >= L.g_P2().g_Y()) ? true : false;
 
-	if( si_x && si_x_P1 && si_x_P2) return true;
-	if( !si_x && !si_x_P1 && !si_x_P2) return true;
+	if (si_x && si_x_P1 && si_x_P2) return true;
+	if (!si_x && !si_x_P1 && !si_x_P2) return true;
 
 	if (si_y && si_y_P1 && si_y_P2) return true;
 	if (!si_y && !si_y_P1 && !si_y_P2) return true;
 
 	return false;
 }
+
+

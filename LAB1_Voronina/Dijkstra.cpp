@@ -67,7 +67,6 @@ double DIJKSTRA::is_neight(int u, int i)
 // Получение пути
 vector<int> DIJKSTRA::get_path()
 {
-	vector<int> PATH; 
 	int curr_V = TERM;
 
 	while (curr_V >= 0)
@@ -77,4 +76,18 @@ vector<int> DIJKSTRA::get_path()
 	}
 
 	return PATH;
+}
+
+void DIJKSTRA::print_path()
+{
+	cout << endl << endl << endl << "PATH: " << endl << endl;
+
+	int k = 1;
+	for (int i = PATH.size() - 1; i >= 0; i--)
+	{
+		cout << "POINT # " << k << ": ";
+		LIST[PATH[i]].g_P().print_point();
+		k++;
+	}
+	cout << endl;
 }

@@ -1,19 +1,15 @@
 #include "Header.h"
 
 // Создание графа
-void GRAPH_CREATOR::graph_creator()
+bool GRAPH_CREATOR::graph_creator()
 {
 	bool ans = false;
 	int CUR_NUM = 0;
 
 	//print_open_close();
 
-	//while (ans == false && OPEN.size() > 0)
-	int k = 0;
-	while(k<4)
+	while (ans == false && OPEN.size() > 0)
 	{
-		k++;
-
 		if (OPEN.size() == 0) break;
 
 		while (!on_free_space(LIST[OPEN[0]].g_P()) && OPEN.size() > 1)
@@ -32,20 +28,8 @@ void GRAPH_CREATOR::graph_creator()
 		//print_open_close();
 	}
 
-	for (int i = 0; i < LIST.size(); i++)
-	{
-		LIST[i].print_vertex();
-	}
-
+	return ans;
 }
-
-
-
-
-
-
-
-
 
 /****************************************************************************************************************/
 // Проведение всех возможных линий из текущей точки
@@ -56,20 +40,13 @@ bool GRAPH_CREATOR::all_new_lines(int CUR_NUM)
 	int CURR_O_NUM = LIST[CUR_NUM].O_NUM;
 	POINT CUR_P = LIST[CUR_NUM].POINT_GR;
 
-	//cout << "CUR_P = ";
-	//CUR_P.print_point();
-
 	for (int j = 0; j < O.size(); j++)
 	{
 		if (j != CURR_O_NUM)  curr_line_vec = create_lines(j, CUR_NUM, CUR_P);
-		//else  curr_line_vec = create_into_obs(j, CUR_NUM, CUR_P);
+		else  curr_line_vec = create_into_obs(j, CUR_NUM, CUR_P);
 	}
 
-	//int prev_size = curr_line_vec.size();
-
-	//curr_line_vec = create_line_to_term(CUR_P, CUR_NUM, TERM);
-
-	//if (curr_line_vec.size() - prev_size > 0) ans = true;
+	ans = create_line_to_term(CUR_P, CUR_NUM);
 
 	if (curr_line_vec.begin() != curr_line_vec.end()) new_lines.insert(new_lines.end(), curr_line_vec.begin(), curr_line_vec.end());
 
@@ -88,8 +65,7 @@ vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 
 		LINE curr_line(P, P_curr[i]);
 
-		// ПРОВЕРА 0-3 0-61
-		if (check_O(curr_line) && check_new_lines(curr_line))
+		if (check_O(curr_line) && check_new_lines(curr_line, new_lines) && check_new_lines(curr_line, curr_line_vec))
 		{
 			curr_line_vec.push_back(curr_line);
 			create_new_bound(P, P_curr[i], j, CUR_NUM);
@@ -97,6 +73,55 @@ vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 	}
 	return curr_line_vec;
 }
+
+// Перенос связей из препятствий
+vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
+{
+	int n_in_O = -1;
+
+	vector<POINT> P_vec = O[j].g_P();
+	for (int i = 0; i < P_vec.size(); i++) if (P.equivalent(P_vec[i])) n_in_O = i;
+
+	if (n_in_O != -1)
+	{
+		int n_nei = ((n_in_O - 1) > 0) ? (n_in_O - 1) : (O[j].g_N() - 1);
+
+		LINE L1 = (O[j].g_L())[n_nei];
+		L_inti_O(L1, j, CUR_NUM, P);
+
+		LINE L2 = (O[j].g_L())[n_in_O];
+		L_inti_O(L2, j, CUR_NUM, P);
+	}
+
+	return curr_line_vec;
+}
+
+// 
+void GRAPH_CREATOR::L_inti_O(LINE L, int j, int CUR_NUM, POINT P)
+{
+	if ( /*check_new_lines(L, curr_line_vec) && */ on_free_space(L.g_P1()) && on_free_space(L.g_P2()) )
+	{
+		curr_line_vec.push_back(L);
+		POINT P2 = (P.equivalent(L.g_P1())) ? (L.g_P2()) : L.g_P1();
+		create_new_bound(P, P2, j, CUR_NUM);
+	}
+}
+
+// Соединение с терминальной вершиной
+bool GRAPH_CREATOR::create_line_to_term(POINT CUR_P, int CUR_NUM)
+{
+	// Проверка для терминальной вершины
+	LINE curr_line(CUR_P, TERM);
+
+	if (check_O(curr_line) && check_new_lines(curr_line, new_lines) && check_new_lines(curr_line, curr_line_vec))
+	{
+		curr_line_vec.push_back(curr_line);
+		create_new_bound(CUR_P, TERM, -2, CUR_NUM);
+		return true;
+	}
+	return false;
+}
+
 
 /****************************************************************************************************************/
 // Проверка на принадледность свободной области
@@ -111,7 +136,7 @@ bool GRAPH_CREATOR::on_free_space(POINT P_check)
 	return true;
 }
 
-
+// Проверка пересечения с гранями объектов
 bool GRAPH_CREATOR::check_O(LINE L_curr)
 {
 	for (int i = 0; i < O.size(); i++)
@@ -125,79 +150,17 @@ bool GRAPH_CREATOR::check_O(LINE L_curr)
 	return true;
 }
 
-bool GRAPH_CREATOR::check_new_lines(LINE L_curr)
+// Проверка пересечения с новыми линиями
+bool GRAPH_CREATOR::check_new_lines(LINE L_curr, vector<LINE> VEC)
 {
-	for (int i = 0; i < new_lines.size(); i++)
+	for (int i = 0; i < VEC.size(); i++)
 	{
-		LINE ob = new_lines[i];
+		LINE ob = VEC[i];
 		if (L_curr.intersect_segm_without_P(ob)) 	return false;
+		if (L_curr.impos(ob)) return false;
 	}
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// Перенос связей из препятствий
-vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
-{
-	vector<POINT> P_curr = O[j].g_P();
-	int numb2 = -1;
-	for (int i = 0; i < O[j].g_N(); i++) if (P.equivalent(P_curr[i])) numb2 = i;
-
-	if (numb2 != -1)
-	{
-		int numb1 = ((numb2 - 1) > 0) ? (numb2 - 1) : (O[j].g_N() - 1);
-
-		LINE L1 = (O[j].g_L())[numb1];
-		if (check_new_line(L1, 1))//  && on_free_space(L1.g_P1()) && on_free_space(L1.g_P2())
-		{
-			curr_line_vec.push_back(L1);
-			POINT P2_1 = (P.equivalent(L1.g_P1())) ? (L1.g_P2()) : L1.g_P1();
-			create_new_bound(P, P2_1, j, CUR_NUM);
-		}
-
-		LINE L2 = (O[j].g_L())[numb2];
-		if (check_new_line(L2, 1)) //(&& on_free_space(L2.g_P1()) && on_free_space(L2.g_P2())
-		{
-			curr_line_vec.push_back(L2);
-			POINT P2_2 = (P.equivalent(L2.g_P1())) ? (L2.g_P2()) : L2.g_P1();
-			create_new_bound(P, P2_2, j, CUR_NUM);
-		}
-	}
-
-	return curr_line_vec;
-}
-
-// Соединение с терминальной вершиной
-vector<LINE> GRAPH_CREATOR::create_line_to_term(POINT CUR_P, int CUR_NUM, POINT TERM)
-{
-	// Проверка для терминальной вершины
-	LINE curr_line = curr_line.create_line(CUR_P, TERM);
-
-	if (check_new_line(curr_line, 2))
-	{
-		curr_line_vec.push_back(curr_line);
-		create_new_bound(CUR_P, TERM, -2, CUR_NUM);
-	}
-	return curr_line_vec;
-}*/
-
-
-
-
-
 
 
 /****************************************************************************************************************/
@@ -223,11 +186,17 @@ void GRAPH_CREATOR::create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM)
 	}
 	else
 	{
-		LIST[num].add_neigh(CUR_NUM);
-		LIST[num].add_weight(w);
+		if (!already_nei(num, CUR_NUM))
+		{
+			LIST[num].add_neigh(CUR_NUM);
+			LIST[num].add_weight(w);
+		}
 
-		LIST[CUR_NUM].add_neigh(num);
-		LIST[CUR_NUM].add_weight(w);
+		if (!already_nei(CUR_NUM, num))
+		{
+			LIST[CUR_NUM].add_neigh(num);
+			LIST[CUR_NUM].add_weight(w);
+		}
 	}
 }
 
@@ -238,6 +207,12 @@ int GRAPH_CREATOR::already_exist(POINT P)
 	return -1;
 }
 
+// Проверка на существование соседства
+bool GRAPH_CREATOR::already_nei(int n1, int n2)
+{
+	for (int i = 0; i < LIST[n1].g_nei().size(); i++) if (LIST[n1].g_nei()[i] == n2) return true;
+	return false;
+}
 
 // Нахождение веса ребра
 double GRAPH_CREATOR::find_weight(POINT P1, POINT P2)
@@ -262,47 +237,3 @@ void VERTEX::print_vertex()
 	//for (int i = 0; i < weight.size(); i++) cout << weight[i] << "; ";
 	//cout << endl << endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void GRAPH_CREATOR::new_L(int CUR_NUM)
-{
-POINT curr_P = LIST[CUR_NUM].g_P();
-
-for (int i = 0; i < O.size(); i++)
-{
-if (i != LIST[CUR_NUM].g_O_NUM)
-{
-for (int j = 0; j < O[i].g_P().size(); j++)
-{
-LINE new_L = new_L.create_line(curr_P, O[i].g_P()[j]);
-
-}
-}
-}
-}
-
-bool GRAPH_CREATOR::check_L(LINE curr_L)
-{
-for (int i = 0; i < O.size(); i++)
-{
-for (int j = 0; j < O[i].g_L().size(); j++)
-{
-if(curr_L.L_curr.intersect(L_curr, (O[i].g_L())[j], inter))
-}
-}
-}*/

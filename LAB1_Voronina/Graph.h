@@ -52,24 +52,28 @@ public:
 		NUM_VER = 1;
 	};
 	
-	void graph_creator();
+	bool graph_creator();
 	bool on_free_space(POINT P);
 
 	bool all_new_lines(int CUR_NUM);
 
 	bool check_O(LINE L_curr);
-	bool check_new_lines(LINE L_curr);
+	bool check_new_lines(LINE L_curr, vector<LINE> VEC);
 
 	vector<LINE> create_lines(int j, int CUR_NUM, POINT P);
 	
 	void create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM);
 	int already_exist(POINT P);
+	bool already_nei(int n1, int n2);
 	double find_weight(POINT P1, POINT P2);
 
-	/*vector<LINE> create_line_to_term(POINT CUR_P, int CUR_NUM, POINT T);
 	vector<LINE> create_into_obs(int j, int CUR_NUM, POINT P);
+	void L_inti_O(LINE L, int j, int CUR_NUM, POINT P);
+
+	bool create_line_to_term(POINT CUR_P, int CUR_NUM);
+	
 	vector<VERTEX> g_LIST() { return LIST;  };
-	*/
+
 	void print_open_close()
 	{
 		cout << endl << "NEW_L.size() = " << new_lines.size();
@@ -77,5 +81,10 @@ public:
 		if (CLOSE.size() > 0) cout << endl << "CLOSE = ";  for (int i = 0; i < CLOSE.size(); i++) cout << CLOSE[i] << "; ";
 		cout << endl << endl;
 	};
+
+	void print_LIST()
+	{
+		for (int i = 0; i < LIST.size(); i++) LIST[i].print_vertex();
+	}
 
 };
