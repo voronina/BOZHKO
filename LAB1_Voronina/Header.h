@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <ostream>
+#include <iostream>
 #include <fstream>
 #include <streambuf>
 #include <vector>
@@ -18,13 +18,7 @@ using namespace std;
 #include "Point_Line.h"
 #include "Obstruction.h" 
 
-#include "JSON_reader.h"
+#include "JSON_decoder.h"
 
 #include "Graph.h"
 #include "Dijkstra.h"
-
-// Функции преобразования к вектору точек и чтения данных
-vector<double> read_data(string str);
-vector<POINT> vector_to_POINTS(vector<double> mas, int N);
-OBS border_read();
-vector<OBS> OBS_read();

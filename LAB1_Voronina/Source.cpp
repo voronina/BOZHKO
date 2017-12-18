@@ -1,5 +1,4 @@
 #include "Header.h"
-#include "JSON_printer.h"
 
 int main()
 {
@@ -31,7 +30,7 @@ int main()
 		// Поиск кратчайшего пути метедем Дейкстры
 		double MAX_WEI = GR_CREATOR.find_weight(B.g_P()[0], B.g_P()[2]) + 1000;
 		DIJKSTRA DIJ(GR_CREATOR.g_LIST(), MAX_WEI);
-		vector<int> PATH = DIJ.algo();
+		vector<POINT> PATH = DIJ.algo();
 		DIJ.print_path();									// Печать пути
 	}
 	else

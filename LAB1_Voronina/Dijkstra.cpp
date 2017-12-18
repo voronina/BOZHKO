@@ -1,7 +1,7 @@
 #include "Header.h"
 
 
-vector<int> DIJKSTRA::algo()
+vector<POINT> DIJKSTRA::algo()
 {
 	int st = 0;
 	int count, index, i, u, m = st + 1;
@@ -65,13 +65,13 @@ double DIJKSTRA::is_neight(int u, int i)
 }
 
 // Получение пути
-vector<int> DIJKSTRA::get_path()
+vector<POINT> DIJKSTRA::get_path()
 {
 	int curr_V = TERM;
 
 	while (curr_V >= 0)
 	{
-		PATH.push_back(curr_V);
+		PATH.push_back(LIST[curr_V].g_P());
 		curr_V = parents[curr_V];
 	}
 
@@ -86,7 +86,7 @@ void DIJKSTRA::print_path()
 	for (int i = PATH.size() - 1; i >= 0; i--)
 	{
 		cout << "POINT # " << k << ": ";
-		LIST[PATH[i]].g_P().print_point();
+		PATH[i].print_point();
 		k++;
 	}
 	cout << endl;

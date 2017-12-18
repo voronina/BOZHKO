@@ -11,7 +11,7 @@ private:
 	double MAX_WEI;
 	int TERM;
 
-	vector<int> PATH;
+	vector<POINT> PATH;
 	
 public:
 	DIJKSTRA(vector<VERTEX> new_LIST, double new_MAX_WEI) : LIST(new_LIST), MAX_WEI(new_MAX_WEI)//, TERM(new_TERM)
@@ -24,11 +24,11 @@ public:
 		parents = (int*)malloc(V * sizeof(int));
 	};
 
-	vector<int> algo();
+	vector<POINT> algo();
 
 	double is_neight(int u, int i);
 
-	vector<int> get_path();
+	vector<POINT> get_path();
 	void print_path();
 
 };
