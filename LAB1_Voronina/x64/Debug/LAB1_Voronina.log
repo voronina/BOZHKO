@@ -1,6 +1,8 @@
-﻿  Graph.cpp
-c:\users\mag\desktop\lab\bozhko\lab1_voronina\obstruction.h(11): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\mag\desktop\lab\bozhko\lab1_voronina\dijkstra.h(19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\mag\desktop\lab\bozhko\lab1_voronina\graph.cpp(161): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\LAB\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.exe
-  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\LAB\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.pdb (Partial PDB)
+﻿  Source.cpp
+c:\users\mag\desktop\bozko\bozhko\lab1_voronina\obstruction.h(11): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mag\desktop\bozko\bozhko\lab1_voronina\dijkstra.h(19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mag\desktop\bozko\bozhko\lab1_voronina\dijkstra.h(22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  JSON_printer.h
+  Generating Code...
+  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\BOZKO\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.exe
+  LAB1_Voronina.vcxproj -> C:\Users\mag\Desktop\BOZKO\BOZHKO\LAB1_Voronina\x64\Debug\LAB1_Voronina.pdb (Partial PDB)

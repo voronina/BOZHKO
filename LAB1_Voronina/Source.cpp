@@ -1,4 +1,5 @@
 #include "Header.h"
+#include "JSON_printer.h"
 
 int main()
 {
@@ -39,6 +40,8 @@ int main()
 	}
 
 	cout << "END OF SOLUTION!" << endl << endl;
+
+	JSON_printer().print();
 	
 	system("pause");
 	return 0; 
