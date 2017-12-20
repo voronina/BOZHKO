@@ -105,7 +105,7 @@ vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
 // 
 void GRAPH_CREATOR::L_inti_O(LINE L, int j, int CUR_NUM, POINT P)
 {
-	if ( /*check_new_lines(L, curr_line_vec) && */ on_free_space(L.g_P1()) && on_free_space(L.g_P2()) )
+	if (check_O(L) && check_new_lines(L, curr_line_vec) &&  on_free_space(L.g_P1()) && on_free_space(L.g_P2()) )
 	{
 		curr_line_vec.push_back(L);
 		POINT P2 = (P.equ(L.g_P1())) ? (L.g_P2()) : L.g_P1();
