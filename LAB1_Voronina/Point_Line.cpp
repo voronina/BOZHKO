@@ -1,8 +1,8 @@
 #include "Header.h"
-#define EPS 0.000001
+
 
 // Ёквивалентность точек
-bool POINT::equivalent(POINT P)
+bool POINT::equ(POINT P)
 {
 	if (X != P.g_X()) return false;
 	if (Y != P.g_Y()) return false;
@@ -24,8 +24,8 @@ bool LINE::equivalent_line(LINE L)
 // ѕроверка на эквивалентность отрезков
 bool LINE::equivalent_segm(LINE L)
 {
-	if ((P1.equivalent(L.g_P1()) && P2.equivalent(L.g_P2())) || 
-		(P1.equivalent(L.g_P2()) && P2.equivalent(L.g_P1()))) return true;
+	if ((P1.equ(L.g_P1()) && P2.equ(L.g_P2())) || 
+		(P1.equ(L.g_P2()) && P2.equ(L.g_P1()))) return true;
 	return false;
 }
 
@@ -58,7 +58,7 @@ bool LINE::contain(POINT P)
 // ѕроверка на принадлежность отрезку с выколотыми точками
 bool LINE::contain_out(POINT P)
 {
-	if (P1.equivalent(P) || P2.equivalent(P)) return false;
+	if (P1.equ(P) || P2.equ(P)) return false;
 	if (contain(P)) return true;
 	return false;
 }
@@ -72,22 +72,53 @@ double LINE::y_sol(LINE L, double zn) { return -det(A, C, L.g_A(), L.g_C()) / zn
 bool LINE::intersect_segm(LINE L)
 {
 	if (equivalent_segm(L)) return true;
-	//if(impos(L)) return true;
 	if (abs(zn(L)) < EPS)	return false;
 	POINT res = POINT(x_sol(L, zn(L)), y_sol(L, zn(L)));
 	if (!contain(res) || !L.contain(res)) return false;
+	//if(impos(L)) return true;
 	return true;
 }
 
 // ѕроверка на пересечение отрезков
-bool LINE::intersect_segm_without_P(LINE L)
+bool LINE::intersect_segm_in_ob(LINE L)
+{
+	if (equivalent_segm(L)) return true;
+	if (abs(zn(L)) < EPS)	return false;
+	POINT res = POINT(x_sol(L, zn(L)), y_sol(L, zn(L)));
+	if (!contain(res) || !L.contain(res)) return false;
+
+	if (res.equ(P1))
+	{
+		if(P1.equ(L.g_P1()) || P1.equ(L.g_P2())) return false;
+	}
+
+	if (res.equ(P2))
+	{
+		if (P2.equ(L.g_P1()) || P2.equ(L.g_P2())) return false;
+	}
+
+	if (res.equ(L.g_P1()))
+	{
+		if ((L.g_P1()).equ(P1) || (L.g_P1()).equ(P2)) return false;
+	}
+	if (res.equ(L.g_P2()))
+	{
+		if ((L.g_P2()).equ(P1) || (L.g_P2()).equ(P2)) return false;
+	}
+
+	return true;
+}
+
+// ѕроверка на пересечение отрезков
+bool LINE::intersect_segm_out(LINE L)
 {
 	if (equivalent_segm(L)) return true; 
 	if (abs(zn(L)) < EPS)	return false;
 	POINT res = POINT(x_sol(L, zn(L)), y_sol(L, zn(L)));
 	if (!contain(res) || !L.contain(res)) return false;
-	if(res.equivalent(P1) || res.equivalent(P2)) return false;
-	if (res.equivalent(L.g_P1()) || res.equivalent(L.g_P2())) return false;
+
+	if(res.equ(P1) || res.equ(P2)) return false;
+	if (res.equ(L.g_P1()) || res.equ(L.g_P2())) return false;
 	//if (impos(L)) return true; 
 	return true;
 }
@@ -110,6 +141,7 @@ bool LINE::intersect_beam(LINE L)
 	return true;
 }
 
+
 // ѕроверка частичного наложени€
 bool LINE::impos(LINE L)
 {
@@ -119,8 +151,6 @@ bool LINE::impos(LINE L)
 
 	return true;
 }
-
-
 
 // ѕроверка принадлежности точки лучу
 bool LINE::on_beam(LINE L)
@@ -146,5 +176,7 @@ bool LINE::on_beam(LINE L)
 
 	return false;
 }
+
+
 
 

@@ -65,10 +65,16 @@ vector<LINE> GRAPH_CREATOR::create_lines(int j, int CUR_NUM, POINT P)
 
 		LINE curr_line(P, P_curr[i]);
 
-		if (check_O(curr_line) && check_new_lines(curr_line, new_lines) && check_new_lines(curr_line, curr_line_vec))
+		if (/*check_O(curr_line) && */check_new_lines(curr_line, new_lines) && check_new_lines(curr_line, curr_line_vec))
 		{
-			curr_line_vec.push_back(curr_line);
-			create_new_bound(P, P_curr[i], j, CUR_NUM);
+			/*cout << endl << endl << "LINE TO " ;
+			curr_line.g_P2().print_point();*/
+
+			if (check_O(curr_line))
+			{
+				curr_line_vec.push_back(curr_line);
+				create_new_bound(P, P_curr[i], j, CUR_NUM);
+			}
 		}
 	}
 	return curr_line_vec;
@@ -80,7 +86,7 @@ vector<LINE> GRAPH_CREATOR::create_into_obs(int j, int CUR_NUM, POINT P)
 	int n_in_O = -1;
 
 	vector<POINT> P_vec = O[j].g_P();
-	for (int i = 0; i < P_vec.size(); i++) if (P.equivalent(P_vec[i])) n_in_O = i;
+	for (int i = 0; i < P_vec.size(); i++) if (P.equ(P_vec[i])) n_in_O = i;
 
 	if (n_in_O != -1)
 	{
@@ -102,7 +108,7 @@ void GRAPH_CREATOR::L_inti_O(LINE L, int j, int CUR_NUM, POINT P)
 	if ( /*check_new_lines(L, curr_line_vec) && */ on_free_space(L.g_P1()) && on_free_space(L.g_P2()) )
 	{
 		curr_line_vec.push_back(L);
-		POINT P2 = (P.equivalent(L.g_P1())) ? (L.g_P2()) : L.g_P1();
+		POINT P2 = (P.equ(L.g_P1())) ? (L.g_P2()) : L.g_P1();
 		create_new_bound(P, P2, j, CUR_NUM);
 	}
 }
@@ -144,7 +150,7 @@ bool GRAPH_CREATOR::check_O(LINE L_curr)
 		for (int j = 0; j < O[i].g_L().size(); j++)
 		{
 			LINE ob = O[i].g_L()[j];
-			if (L_curr.intersect_segm_without_P(ob)) 	return false; 
+			if (L_curr.intersect_segm_in_ob(ob)) 	return false;
 		}
 	}
 	return true;
@@ -156,12 +162,11 @@ bool GRAPH_CREATOR::check_new_lines(LINE L_curr, vector<LINE> VEC)
 	for (int i = 0; i < VEC.size(); i++)
 	{
 		LINE ob = VEC[i];
-		if (L_curr.intersect_segm_without_P(ob)) 	return false;
+		if (L_curr.intersect_segm_out(ob)) 	return false;
 		if (L_curr.impos(ob)) return false;
 	}
 	return true;
 }
-
 
 /****************************************************************************************************************/
 // Создание новой связи
@@ -203,7 +208,7 @@ void GRAPH_CREATOR::create_new_bound(POINT P1, POINT P2, int j, int CUR_NUM)
 // Проверка на существование вершины
 int GRAPH_CREATOR::already_exist(POINT P)
 {
-	for (int i = 0; i < LIST.size(); i++) if ((LIST[i].POINT_GR).equivalent(P)) return LIST[i].NUM;
+	for (int i = 0; i < LIST.size(); i++) if ((LIST[i].POINT_GR).equ(P)) return LIST[i].NUM;
 	return -1;
 }
 

@@ -92,71 +92,34 @@ OBS border_create(POINT ST, POINT TERM);
 
 /**********************************************************************************************/
 
-/*class JSON_point {
-private:
-	double x, y;
-	vector<POINT> CC;
+class JSON_line {
 public:
-	JSON_point(double new_x, double new_y) : x(new_x), y(new_y) {};
-};*/
-
-
-/*class JSON_line {
-private:
-
-public:
-void print() {
-
-picojson::object v1;
-
-double x1 = 10.9;
-double y1 = 9.9;
-
-v1["x1"] = picojson::value(x1);
-v1["y1"] = picojson::value(y1);
-
-picojson::object v2;
-
-double x2 = 100.9;
-double y2 = 90.9;
-
-v2["x1"] = picojson::value(x2);
-v2["y1"] = picojson::value(y2);
-
-picojson::array arr;
-arr.push_back(picojson::value(v1));
-arr.push_back(picojson::value(v2));
-
-string str = picojson::value(arr).serialize();
-cout << str << endl;
-}
+	picojson::object L;
+	JSON_line(POINT B, POINT E)
+	{
+		L["x1"] = picojson::value(B.g_X());
+		L["y1"] = picojson::value(B.g_Y());
+		L["x2"] = picojson::value(E.g_X());
+		L["y2"] = picojson::value(E.g_Y());
+	};
 };
 
-class JSON_printer {
+class JSON_writer {
 public:
-void print() {
+	picojson::array LINES;
+	JSON_writer(vector<POINT> P)
+	{
+		for (int i = 0; i < P.size() - 1; i++) LINES.push_back(picojson::value(JSON_line(P[i], P[i + 1]).L));
+	};
 
-picojson::object v1;
+	void write_JSON(void)
+	{
+		string str = picojson::value(LINES).serialize();
+		//cout << str << endl;
 
-double x1 = 10.9;
-double y1 = 9.9;
-
-v1["x1"] = picojson::value(x1);
-v1["y1"] = picojson::value(y1);
-
-picojson::object v2;
-
-double x2 = 100.9;
-double y2 = 90.9;
-
-v2["x1"] = picojson::value(x2);
-v2["y1"] = picojson::value(y2);
-
-picojson::array arr;
-arr.push_back(picojson::value(v1));
-arr.push_back(picojson::value(v2));
-
-string str = picojson::value(arr).serialize();
-cout << str << endl;
-}
-};*/
+		ofstream fout;
+		fout.open("output_json.txt");
+		fout << str << endl;
+		fout.close();
+	};
+};

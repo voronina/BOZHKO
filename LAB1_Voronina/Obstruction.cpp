@@ -22,7 +22,7 @@ void OBS::create_border()
 // ѕроверка на принадлежность области
 bool OBS::inside_border(POINT P_in)
 {
-	for (int i = 0; i < P.size(); i++) if (P_in.equivalent(P[i])) return false;
+	for (int i = 0; i < P.size(); i++) if (P_in.equ(P[i])) return false;
 	
 	POINT mid_p = L[0].middle();
 	
@@ -32,7 +32,7 @@ bool OBS::inside_border(POINT P_in)
 	for (int i = 0; i < L.size(); i++)
 	{
 		if ( BEAM.intersect_beam(L[i]) ) bor_counter++; 
-		for (int i = 0; i < P.size(); i++) if (P_in.equivalent(P[i]))
+		for (int i = 0; i < P.size(); i++) if (P_in.equ(P[i])) // !!!!
 		{
 			bor_counter--;
 			bor_counter_help++;

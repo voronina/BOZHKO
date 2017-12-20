@@ -12,6 +12,7 @@ int main()
 	cout << "FINISH: " << TERM.g_X() << " " << TERM.g_Y() << endl;
 
 	cout << "SOLUTION IN WORK..." << endl;
+	unsigned int start_time = clock();
 
 	// Инициализация границ и препятствий
 	OBS B = border_create(ST, TERM);
@@ -32,15 +33,16 @@ int main()
 		DIJKSTRA DIJ(GR_CREATOR.g_LIST(), MAX_WEI);
 		vector<POINT> PATH = DIJ.algo();
 		DIJ.print_path();									// Печать пути
+		JSON_writer(PATH).write_JSON();
 	}
 	else
 	{
 		cout << endl << "THERE IS NO WAY!" << endl;
 	}
 
-	cout << "END OF SOLUTION!" << endl << endl;
-
-	JSON_printer().print();
+	unsigned int end_time = clock();
+	cout << endl << "END OF SOLUTION!" << endl << endl;
+	cout << "TIME:" << (end_time - start_time)/1000.0 << endl << endl;
 	
 	system("pause");
 	return 0; 

@@ -2,7 +2,7 @@
 
 SourceData json_reader()
 {
-	ifstream file("data_test.txt");
+	ifstream file("data.txt");
 
 	picojson::value v;
 	picojson::parse(v, file);

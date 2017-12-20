@@ -12,7 +12,7 @@ public:
 	void zero_point() { X = 0; Y = 0; };
 	void print_point() { cout <<  X << " " << Y << endl; };
 
-	bool equivalent(POINT P);
+	bool equ(POINT P);
 };
 
 // Класс линии
@@ -51,8 +51,10 @@ public:
 	double y_sol(LINE L, double zn);
 
 	bool intersect_segm(LINE L);
-	bool intersect_segm_without_P(LINE L);
+	bool intersect_segm_in_ob(LINE L);
+	bool intersect_segm_out(LINE L);
 	bool intersect_beam(LINE L);
+
 	bool impos(LINE L); 
 	bool on_beam(LINE L);
 };

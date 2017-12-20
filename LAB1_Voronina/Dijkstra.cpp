@@ -80,7 +80,7 @@ vector<POINT> DIJKSTRA::get_path()
 
 void DIJKSTRA::print_path()
 {
-	cout << endl << endl << endl << "PATH: " << endl << endl;
+	cout <<  endl << "PATH: " << endl << endl;
 
 	int k = 1;
 	for (int i = PATH.size() - 1; i >= 0; i--)

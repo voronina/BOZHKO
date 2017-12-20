@@ -1,17 +1,36 @@
-﻿  Source.cpp
+﻿  Graph.cpp
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\dijkstra.h(20): warning C4018: <: несоответствие типов со знаком и без знака
-  Создание кода...
-  Компиляция...
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(43): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(62): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(89): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(140): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(148): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(150): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(162): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(211): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(218): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(239): warning C4018: <: несоответствие типов со знаком и без знака
+  Source.cpp
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\dijkstra.h(20): warning C4018: <: несоответствие типов со знаком и без знака
   Point_Line.cpp
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
@@ -20,6 +39,7 @@ c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\dijkstra.h(20): warnin
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
@@ -32,32 +52,16 @@ c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.cpp(45): w
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\dijkstra.h(20): warning C4018: <: несоответствие типов со знаком и без знака
-  Graph.cpp
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\dijkstra.h(20): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(43): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(62): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(83): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(134): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(142): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(144): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(156): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(206): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(213): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.cpp(234): warning C4018: <: несоответствие типов со знаком и без знака
   Dijkstra.cpp
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\obstruction.h(29): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(38): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\json_decoder.h(112): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(80): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(81): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\полина\desktop\bozhko\bozhko\lab1_voronina\graph.h(87): warning C4018: <: несоответствие типов со знаком и без знака

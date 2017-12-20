@@ -10,6 +10,7 @@
 #include <time.h>
 #include <math.h>
 #include <string> 
+#include <ctime>
 
 #include <picojson.h>
 
@@ -22,3 +23,5 @@ using namespace std;
 
 #include "Graph.h"
 #include "Dijkstra.h"
+
+#define EPS 0.000001
